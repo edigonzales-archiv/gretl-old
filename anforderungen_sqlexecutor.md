@@ -1,5 +1,7 @@
 # Kontext
 
+Verschiedene Datenherren stellen ihre Daten auf unterschiedlichen Plattformen (Oracle, Postgres etc.) zur Verfügung. Da diese teilweise in unsere Postges-DB abgelegt werden müssen oder für verschiedene Anwendungen benötigt werden, soll es ein einfaches Tool geben, welches einen schnellen (temporären) Import der Daten in unsere DB ermöglicht. Gegebenenfalls sollen die Daten aber nicht 1:1 in unsere DB importiert werden, sondern entsprechend angepasst und evtl. mit weiteren Tabellen kombiniert werden. Auch bereits in der Datenbank bestehende Daten sollen mittels eines einfachen Tools entsprechend angepasst werden können.
+Diese Prozesse können periodisch oder nach Wunsch des Benutzers ausgeführt werden und sollen voneinander getrennt ansprechbar sein.
 
 
 # Anforderungen SQLExecutor-Step
@@ -10,8 +12,8 @@ Es soll lediglich ein Staging-Schema pro DB geben.
 
 Input:
 
-* connection-URL
-* Query-Files
+* connection
+* Query-Files als Array
 
 Output:
 
