@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db2db_step.iml" filepath="$PROJECT_DIR$/.idea/modules/db2db_step.iml" group="db2db_step" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_main.iml" filepath="$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_main.iml" group="db2db_step" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_test.iml" filepath="$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_test.iml" group="db2db_step" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dbconnector.iml" filepath="$PROJECT_DIR$/.idea/modules/dbconnector.iml" group="dbconnector" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dbconnector/dbconnector_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dbconnector/dbconnector_main.iml" group="dbconnector" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dbconnector/dbconnector_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dbconnector/dbconnector_test.iml" group="dbconnector" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gretl.iml" filepath="$PROJECT_DIR$/.idea/modules/gretl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gretl_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gretl_main.iml" group="gretl" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gretl_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gretl_test.iml" group="gretl" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sqlexecutor_step.iml" filepath="$PROJECT_DIR$/.idea/modules/sqlexecutor_step.iml" group="sqlexecutor_step" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sqlexecutor_step/sqlexecutor_step_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sqlexecutor_step/sqlexecutor_step_main.iml" group="sqlexecutor_step" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sqlexecutor_step/sqlexecutor_step_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sqlexecutor_step/sqlexecutor_step_test.iml" group="sqlexecutor_step" />
+    </modules>
+  </component>
+</project>
