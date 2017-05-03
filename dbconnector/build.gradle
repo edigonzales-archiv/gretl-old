@@ -11,4 +11,5 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile files('./lib/ojdbc7.jar', './lib/postgresql-42.0.0.jar')
 }
