@@ -17,13 +17,13 @@ public class DbConnectorImpTest {
     @Test
     public void con_oracle() throws Exception {
         DbConnectorImp x = new DbConnectorImp();
-        x.Con("jdbc:oracle:thin:@//srsofaioi18632.verw.rootso.org:1521/capi_p","SRVAGIGB", "tz6_2aZ8");
+        x.Con("jdbc:oracle:thin:@//srsofaioi18632.verw.rootso.org:1521/capi_p","SRVAGIGB", "");
     }
 
     @Test
     public void con_mssql() throws Exception {
         DbConnectorImp x = new DbConnectorImp();
-        x.Con("jdbc:sqlserver://srsofaioi18943.verw.rootso.org:1433", "imdaspro_gis", "ku22pro1_5");
+        x.Con("jdbc:sqlserver://srsofaioi18943.verw.rootso.org:1433", "imdaspro_gis", "");
     }
 
     @Test
