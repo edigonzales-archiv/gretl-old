@@ -1,5 +1,8 @@
 package ch.so.agi.gretl;
 
+import ch.so.agi.gretl.dbconnector.DbConnectorImp;
+import ch.so.agi.gretl.dbconnector.DbConnector;
+
 import java.sql.Connection;
 
 /**
@@ -8,10 +11,15 @@ import java.sql.Connection;
 public class Db2DbStepImpl
     implements Db2DbStep {
 
+    /** KONSTRUKTOR **/
+    public void Db2DbStepImpl() {
+        DbConnector inputconnection=new DbConnectorImp();
+        inputconnection.Con(,"USER","PW");
+    }
 
-
+    /** HAUPTFUNKTION **/
     @Override
-    public boolean execute(Connection quellDb, Connection zielDb, Boolean trunc, String sqlfile, String OutputSchemaAndTable) {
-        return false;
+    public void execute(Connection quellDb, Connection zielDb, Boolean trunc, String sqlfile, String OutputSchemaAndTable) {
+        
     }
 }
