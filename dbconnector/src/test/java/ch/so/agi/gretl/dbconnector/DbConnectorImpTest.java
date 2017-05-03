@@ -9,9 +9,14 @@ import static org.junit.Assert.*;
  */
 public class DbConnectorImpTest {
     @Test
-    public void con() throws Exception {
-        DbConnectorImp x=new DbConnectorImp();
-        x.Con("jdbc:postgresql://10.36.54.200:54321/sogis","bjsvwsch", null);
+    public void con_pgsql() throws Exception {
+        DbConnectorImp x = new DbConnectorImp();
+        x.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
     }
 
+    @Test
+    public void con_oracle() throws Exception {
+        DbConnectorImp x = new DbConnectorImp();
+        x.Con("jdbc:oracle:thin:@//srsofaioi18632.verw.rootso.org:1521/capi_p","SRVAGIGB", "tz6_2aZ8");
+    }
 }
