@@ -20,6 +20,6 @@ public class Db2DbStepImpl
     /** HAUPTFUNKTION **/
     @Override
     public void execute(Connection quellDb, Connection zielDb, Boolean trunc, String sqlfile, String OutputSchemaAndTable) {
-        
+
     }
 }
