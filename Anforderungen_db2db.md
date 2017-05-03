@@ -5,14 +5,14 @@ Anforderungen Steps
 **Kontext**
 ----------
 
-Verschiedene Datenherren stellen ihre Daten auf unterschiedlichen Plattformen (Oracle, Postgres etc.) zur Verfügung. Da diese teilweise in unsere Postges-DB abgelegt werden müssen oder für verschiedene Anwendungen benötigt werden, soll es ein einfaches Tool geben, welches einen schnellen (temporären) Import der Daten in unsere DB ermöglicht. Gegebenenfalls sollen die Daten aber nicht 1:1 in unsere DB importiert werden, sondern entsprechend angepasst und evtl. mit weiteren Tabellen kombiniert werden. Auch bereits in der Datenbank bestehende Daten sollen mittels eines einfachen Tools entsprechend angepasst werden können.
-Diese Prozesse können periodisch oder nach Wunsch des Benutzers ausgeführt werden und sollen voneinander getrennt ansprechbar sein.
+Verschiedene Datenherren und Datenproduzenten stellen ihre Daten auf unterschiedlichen Plattformen (Oracle, Postgres, SQLite etc.) zur Verfügung. Da diese teilweise periodisch in unsere Postgresql-DB abgelegt werden müssen und für verschiedene Anwendungen benötigt und/oder umgebaut werden müssen, soll es Steps geben, welches einen vordefinierten Import der Daten in unsere DB ermöglicht. 
+Eingebettet wird der Step in Gradle, einem Build-Tool, welches die Zusammensetzung mehrerer Steps ermöglicht. 
 
 ----------
 **db2db-Step**
 ---------- 
 
-Der db2db-Step soll Tabellen aus unterschiedlichen Datenbanken (u.a. PostgreSQL, OracleDB, MSSQL etc.) 1:1 in eine andere Datenbank kopieren. Eine SQL-Datei definiert dabei den Input (Verschiedene Tabellen, Join, Union etc.). Dieser Input wird dann in die Zieltabelle geschrieben, welche zuvor optional geleert werden (Truncate). Das Updaten einer Tabelle wird vorerst noch nicht implementiert. Alle Schritte innerhalb dieses Steps sollen in einer Transaktion pro DB ausgeführt werden.
+Der db2db-Step soll Tabellen aus einer Datenbank (u.a. PostgreSQL, OracleDB, MSSQL etc.) in eine andere Datenbank kopieren. Eine SQL-Datei definiert dabei den Input (Verschiedene Tabellen, Join, Union etc.). Dieser Input wird dann in die Zieltabelle geschrieben, welche zuvor optional geleert wird (Truncate). Das Updaten einer Tabelle wird vorerst noch nicht implementiert. Alle Schritte innerhalb dieses Steps sollen in einer Transaktion pro DB ausgeführt werden.
  
 
 **benötigte Parameter** :
