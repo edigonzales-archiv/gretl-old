@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/dbconnector/lib/ojdbc7.jar!/" />
       <root url="jar://$PROJECT_DIR$/dbconnector/lib/postgresql-42.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dbconnector/lib/sqljdbc42.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
