@@ -23,6 +23,6 @@ public class DbConnectorImpTest {
     @Test
     public void con_mssql() throws Exception {
         DbConnectorImp x = new DbConnectorImp();
-        x.Con("jdbc:sqlserver://srsofaioi18943.verw.rootso.org:1433", "imdaspro_gis", "ku22pro1_5");
+        x.Con("jdbc:sqlserver://srsofaioi18943.verw.rootso.org:1433", "imdaspro_gis", "");
     }
 }
