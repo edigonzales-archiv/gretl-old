@@ -14,7 +14,7 @@ public class Db2DbStepImpl
     /** KONSTRUKTOR **/
     public void Db2DbStepImpl() {
         DbConnector inputconnection=new DbConnectorImp();
-        inputconnection.Con(,"USER","PW");
+        inputconnection.Con("URL","USER","PW");
     }
 
     /** HAUPTFUNKTION **/
