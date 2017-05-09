@@ -14,4 +14,4 @@ Es wird kein zusätzliches GUI (Graphical User Interface) erstellt.
 Es wird kein Setup vorgenommen.
 
 ## Dokumentation
-Für den Benutzer wird eine Benutzerdokumentation und ein Referenzhandbuch erstellt. 
+Für den Benutzer wird eine Benutzerdokumentation und ein Referenzhandbuch erstellt. Desweitern wird der Quellcode mit Kommentaren ergänzt
