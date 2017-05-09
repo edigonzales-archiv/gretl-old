@@ -31,13 +31,13 @@ public class LoggerImp implements Logger {
         if (LogLevel==Logger.INFO_LEVEL) {
             /** INFO **/
             /**Write to a file**/
-            System.out.println(INFO_NAME+", "+Message);
+            System.out.println(INFO_NAME+" "+Message);
 
         }
         else if (LogLevel==Logger.DEBUG_LEVEL) {
             /** DEBUG **/
             /**Write to another file**/
-            System.out.println(DEBUG_NAME+", "+Message);
+            System.out.println(DEBUG_NAME+" "+Message);
 
         }
         else {

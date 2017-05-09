@@ -9,7 +9,7 @@ public class DbConnectorImpTest {
     @Test
     public void con_pgsql() throws Exception {
         DbConnectorImp x = new DbConnectorImp();
-        x.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
+        x.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
     }
 
     @Test
