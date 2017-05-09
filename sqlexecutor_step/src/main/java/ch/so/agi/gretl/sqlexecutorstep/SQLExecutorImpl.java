@@ -1,12 +1,17 @@
 package ch.so.agi.gretl.sqlexecutorstep;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import ch.so.agi.gretl.core.DbConnector;
 import ch.so.agi.gretl.core.Logger;
 import ch.so.agi.gretl.core.LoggerImp;
-
+import sun.text.normalizer.UTF16;
 
 
 /**
@@ -21,21 +26,39 @@ public class SQLExecutorImpl implements SQLExecutor {
 
         //Check Files for correct file extension
         SQLExecutorImpl sqlExecutorInst = new SQLExecutorImpl();
-        Boolean FileState = sqlExecutorInst.checkFiles(SQLFiles);
+        Boolean correctFileExtension = sqlExecutorInst.checkFiles(SQLFiles);
 
+        //Check if all Files are readable
+        if (correctFileExtension==true){
+            Boolean FilesReadable=sqlExecutorInst.readableFiles(SQLFiles);
+            if (FilesReadable==true){
+                for (int i=0; i<SQLFiles.length; i++) {
+                    Path FilePath = Paths.get(SQLFiles[i].getAbsolutePath());
+                    try {
+                        //Read SQL-File
+                        byte[] encodedFile = Files.readAllBytes(FilePath);
+                        String Query =new String(encodedFile, "UTF-8");
+                        SQLExecuterLog.log(2,Query);
 
+                        //Test Query
+                        Db.setAutoCommit(false);
+                        Statement SQLStatement = Db.createStatement();
+                        try {
+                            SQLStatement.execute(  Query );
+                            Db.commit();
+                        } catch (SQLException e) {
+                            Db.rollback();
+                            System.out.println(e);
+                        }
 
-        if (FileState!=false){
-            SQLExecuterLog.log(2,"all Files have the extension .sql");
-            for (int i=0; i<SQLFiles.length; i++) {
-               if (SQLFiles[1].canRead() == true){
-
-              }
+                    } catch (Exception e){
+                        System.out.println(e);
+                    }
+                }
             }
-
-
-            System.out.println("Huhu");
         }
+
+
     }
 
     @Override
@@ -62,6 +85,26 @@ public class SQLExecutorImpl implements SQLExecutor {
         }
         return FileState;
 
+    }
+
+    @Override
+    public boolean readableFiles(File[] SQLFiles) {
+        Logger SQLExecuterLog = LoggerImp.getInstance();
+        Boolean FileState = true;
+
+        //Check if Files are readable
+        for (int i=0; i<SQLFiles.length; i++) {
+            String filePath = SQLFiles[i].getAbsolutePath();
+
+            if (SQLFiles[i].canRead() == true){
+
+            } else {
+                SQLExecuterLog.log(2, "File can not be read: " + filePath);
+                FileState = false;
+            }
+
+        }
+        return FileState;
     }
 
 
