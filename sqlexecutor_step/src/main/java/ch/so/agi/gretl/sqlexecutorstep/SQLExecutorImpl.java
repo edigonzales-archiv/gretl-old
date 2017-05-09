@@ -31,9 +31,12 @@ public class SQLExecutorImpl implements SQLExecutor {
         //Check if all Files are readable
         if (correctFileExtension==true){
             Boolean FilesReadable=sqlExecutorInst.readableFiles(SQLFiles);
+
             if (FilesReadable==true){
+
                 for (int i=0; i<SQLFiles.length; i++) {
                     Path FilePath = Paths.get(SQLFiles[i].getAbsolutePath());
+
                     try {
                         //Read SQL-File
                         byte[] encodedFile = Files.readAllBytes(FilePath);
@@ -43,12 +46,14 @@ public class SQLExecutorImpl implements SQLExecutor {
                         //Test Query
                         Db.setAutoCommit(false);
                         Statement SQLStatement = Db.createStatement();
+
                         try {
                             SQLStatement.execute(  Query );
-                            Db.commit();
+                            //Db.commit();
+
                         } catch (SQLException e) {
                             Db.rollback();
-                            System.out.println(e);
+                            SQLExecuterLog.log(1,e.toString());
                         }
 
                     } catch (Exception e){

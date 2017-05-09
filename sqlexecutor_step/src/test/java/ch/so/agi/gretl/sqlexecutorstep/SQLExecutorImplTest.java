@@ -40,7 +40,8 @@ public class SQLExecutorImplTest {
         DbConnectorImp dbConn = new DbConnectorImp();
         Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
         File file1 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
-        File[] sqlListe ={ file1};
+        File file2 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query_farben.sql");
+        File[] sqlListe ={ file1, file2};
 
         x.execute(con,sqlListe);
 
