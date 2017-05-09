@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="core_main" target="1.8" />
+      <module name="core_test" target="1.8" />
       <module name="db2db_step_main" target="1.8" />
       <module name="db2db_step_test" target="1.8" />
       <module name="dbconnector_main" target="1.8" />

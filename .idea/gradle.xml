@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/db2db_step" />
             <option value="$PROJECT_DIR$/dbconnector" />
             <option value="$PROJECT_DIR$/sqlexecutor_step" />
