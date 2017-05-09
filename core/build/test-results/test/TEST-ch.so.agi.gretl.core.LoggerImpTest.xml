@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ch.so.agi.gretl.core.LoggerImpTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-05-09T08:50:13" hostname="ws20046" time="0.001">
+<testsuite name="ch.so.agi.gretl.core.LoggerImpTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-05-09T08:58:21" hostname="ws20046" time="0.002">
   <properties/>
-  <testcase name="getInstance" classname="ch.so.agi.gretl.core.LoggerImpTest" time="0.0"/>
+  <testcase name="getInstance" classname="ch.so.agi.gretl.core.LoggerImpTest" time="0.001"/>
   <testcase name="log" classname="ch.so.agi.gretl.core.LoggerImpTest" time="0.001"/>
-  <system-out><![CDATA[1, Super Log
+  <system-out><![CDATA[3, Super Log
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

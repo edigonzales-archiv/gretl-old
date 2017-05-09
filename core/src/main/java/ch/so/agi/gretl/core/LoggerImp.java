@@ -11,6 +11,9 @@ import java.util.logging.*;
  */
 public class LoggerImp implements Logger {
 
+    private static final String INFO_NAME = "INFO: ";
+    private static final String DEBUG_NAME = "DEBUG: ";
+
     private static Logger instance = null;
     private LoggerImp() {}
 
@@ -25,21 +28,22 @@ public class LoggerImp implements Logger {
 
     @Override
     public void log(Integer LogLevel, String Message) {
-        System.out.println(LogLevel+", "+Message);
-        if (LogLevel==1) {
+        if (LogLevel==Logger.INFO_LEVEL) {
             /** INFO **/
             /**Write to a file**/
+            System.out.println(INFO_NAME+", "+Message);
 
         }
-        else if (LogLevel==2) {
+        else if (LogLevel==Logger.DEBUG_LEVEL) {
             /** DEBUG **/
             /**Write to another file**/
+            System.out.println(DEBUG_NAME+", "+Message);
 
         }
         else {
             /**UNEXPECTED LOGLEVEL**/
             /**Throws Exception**/
-
+            throw new RuntimeException("Logging-Fehler");
         }
 
 
