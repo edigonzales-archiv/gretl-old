@@ -1,8 +1,6 @@
 package ch.so.agi.gretl.db2dbstep;
 
-import ch.so.agi.gretl.db2dbstep.Db2DbStep;
 import ch.so.agi.gretl.core.DbConnectorImp;
-import ch.so.agi.gretl.core.DbConnector;
 
 import java.util.List;
 
@@ -19,6 +17,9 @@ public class Db2DbStepImpl
     @Override
     public void execute(DbConnectorImp sourceDb, DbConnectorImp targetDb, List<TransferSet> transferSets) {
 
+        for (int i = 0; i < transferSets.size(); i++) {
+            System.out.println(transferSets.get(i));
+        }
 
     }
 }

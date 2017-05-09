@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import ch.so.agi.gretl.*;
 
+import ch.so.agi.gretl.core.DbConnectorImp;
+
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;

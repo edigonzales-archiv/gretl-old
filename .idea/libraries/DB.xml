@@ -1,10 +1,10 @@
 <component name="libraryTable">
   <library name="DB">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dbconnector/lib/ojdbc7.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dbconnector/lib/postgresql-42.0.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dbconnector/lib/sqljdbc42.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dbconnector/lib/sqlite-jdbc-3.16.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/ojdbc7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/postgresql-42.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/sqlite-jdbc-3.16.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/sqljdbc42.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
