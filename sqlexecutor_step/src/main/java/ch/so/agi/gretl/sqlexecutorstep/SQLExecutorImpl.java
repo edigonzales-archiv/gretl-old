@@ -8,10 +8,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import ch.so.agi.gretl.core.DbConnector;
 import ch.so.agi.gretl.core.Logger;
 import ch.so.agi.gretl.core.LoggerImp;
-import sun.text.normalizer.UTF16;
 
 
 /**
@@ -23,6 +21,7 @@ public class SQLExecutorImpl implements SQLExecutor {
     @Override
     public void execute(Connection Db, File[] SQLFiles) {
         Logger SQLExecuterLog = LoggerImp.getInstance();
+        String CompleteQuery = "";
 
         //Check Files for correct file extension
         SQLExecutorImpl sqlExecutorInst = new SQLExecutorImpl();
@@ -40,7 +39,7 @@ public class SQLExecutorImpl implements SQLExecutor {
                     try {
                         //Read SQL-File
                         byte[] encodedFile = Files.readAllBytes(FilePath);
-                        String Query =new String(encodedFile, "UTF-8");
+                        String Query =new String(encodedFile, "UTF-8").trim();
                         SQLExecuterLog.log(2,Query);
 
                         //Test Query
@@ -49,12 +48,27 @@ public class SQLExecutorImpl implements SQLExecutor {
 
                         try {
                             SQLStatement.execute(  Query );
-                            //Db.commit();
+                            String lastChar = Query.substring(Query.length()-1);
+                            //System.out.println("Letztes Char:" + lastChar);
+                            if (lastChar.equals(";")) {
+                                CompleteQuery = CompleteQuery + Query;
+                            } else {
+                                CompleteQuery = CompleteQuery + " ; " + Query;
+                            }
+
 
                         } catch (SQLException e) {
                             Db.rollback();
                             SQLExecuterLog.log(1,e.toString());
                         }
+
+                        //try {
+                            System.out.println(CompleteQuery);
+                            //SQLStatement.execute(CompleteQuery);
+                            //Db.commit();
+                        /*} catch (SQLException e){
+                            System.out.println(e);
+                        }*/
 
                     } catch (Exception e){
                         System.out.println(e);
