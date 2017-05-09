@@ -1,8 +1,8 @@
 package ch.so.agi.gretl.db2dbstep;
 
-import ch.so.agi.gretl.Db2DbStep;
-import ch.so.agi.gretl.dbconnector.DbConnectorImp;
-import ch.so.agi.gretl.dbconnector.DbConnector;
+import ch.so.agi.gretl.db2dbstep.Db2DbStep;
+import ch.so.agi.gretl.core.DbConnectorImp;
+import ch.so.agi.gretl.core.DbConnector;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package ch.so.agi.gretl;
 
 import ch.so.agi.gretl.db2dbstep.Db2DbStepImpl;
 import ch.so.agi.gretl.db2dbstep.TransferSet;
-import ch.so.agi.gretl.dbconnector.DbConnectorImp;
+import ch.so.agi.gretl.core.DbConnectorImp;
 import org.junit.Test;
 
 import java.io.File;

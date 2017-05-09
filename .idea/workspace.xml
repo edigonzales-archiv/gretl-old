@@ -2,97 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="65c35f00-dc74-4af1-ac17-ac21cb0313bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so/agi" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so/agi/gretl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so/agi/gretl/core" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so/agi/gretl/core/DbConnector.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so/agi/gretl/core/DbConnectorImp.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so/agi/gretl/core/Logger.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/ch/so/agi/gretl/core/LoggerImp.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test/ch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test/ch/so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test/ch/so/agi" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test/ch/so/agi/gretl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test/ch/so/agi/gretl/core" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test/ch/so/agi/gretl/core/DbConnectorImpTest.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/test/ch/so/agi/gretl/core/LoggerImpTest.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/classes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/packages" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/resources/main" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/resources/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/test-results" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/test-results/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/test-results/test/binary" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/test-results/test/binary/output.bin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/test-results/test/binary/output.bin.idx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/test-results/test/binary/results.bin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/lib" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/lib/ojdbc7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/lib/postgresql-42.0.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/lib/sqlite-jdbc-3.16.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/lib/sqljdbc42.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/ch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so/agi" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java/ch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java/ch/so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java/ch/so/agi" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/test/gemeindegrenzen.sqlite" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/classes/ch.so.agi.gretl.core.LoggerImpTest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/css/base-style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/js/report.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/reports/tests/test/packages/ch.so.agi.gretl.core.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/resources/main/dummy.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/resources/test/dummy.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/test-results/test/TEST-ch.so.agi.gretl.core.LoggerImpTest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/DbConnector.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/DbConnectorImp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/resources/dummy.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core/DbConnectorImpTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/resources/dummy.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_main.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/db2db_step/db2db_step_test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/dbconnector.iml" afterPath="$PROJECT_DIR$/.idea/modules/dbconnector.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/Logger.java" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/Logger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/LoggerImp.java" afterPath="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/LoggerImp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core/LoggerImpTest.java" afterPath="$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core/LoggerImpTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStep.java" afterPath="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStep.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStepImpl.java" afterPath="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStepImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db2db_step/src/test/java/ch/so/agi/gretl/Db2DbStepImplTest.java" afterPath="$PROJECT_DIR$/db2db_step/src/test/java/ch/so/agi/gretl/Db2DbStepImplTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -127,12 +41,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Db2DbStepImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Db2DbStepImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStepImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="252">
+              <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Db2DbStep.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStep.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,21 +68,11 @@
       <file leaf-file-name="Db2DbStepImplTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db2db_step/src/test/java/ch/so/agi/gretl/Db2DbStepImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="-81">
+              <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
               <folding>
-                <element signature="e#484#497#0" expanded="true" />
+                <element signature="e#477#490#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -164,26 +82,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
               <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoggerImp.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/LoggerImp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="45" column="57" lean-forward="false" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoggerImpTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core/LoggerImpTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -225,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/DbConnectorImp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="387">
-              <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -1038,11 +936,12 @@
         <option value="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/Db2DbStep.java" />
         <option value="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/Db2DbStepImpl.java" />
         <option value="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/TransferSet.java" />
-        <option value="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStepImpl.java" />
-        <option value="$PROJECT_DIR$/db2db_step/src/test/java/ch/so/agi/gretl/Db2DbStepImplTest.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/Logger.java" />
         <option value="$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core/LoggerImpTest.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/LoggerImp.java" />
+        <option value="$PROJECT_DIR$/db2db_step/src/test/java/ch/so/agi/gretl/Db2DbStepImplTest.java" />
+        <option value="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStep.java" />
+        <option value="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStepImpl.java" />
       </list>
     </option>
   </component>
@@ -1094,7 +993,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="db2db_step" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1108,11 +1007,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="db2db_step" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1126,7 +1025,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="db2db_step" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1134,7 +1033,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1148,7 +1047,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="db2db_step" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1156,7 +1055,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1164,7 +1063,39 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="db2dbstep" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gretl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gretl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1237,6 +1168,7 @@
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="trunk" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.gradle.running" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -1889,13 +1821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStep.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dbconnector/src/main/java/ch/so/agi/gretl/dbconnector/DbConnector.java" />
     <entry file="file://$PROJECT_DIR$/dbconnector/src/test/java/ch/so/agi/gretl/dbconnector/DbConnectorImpTest.java" />
     <entry file="file://$PROJECT_DIR$/dbconnector/src/main/java/ch/so/agi/gretl/dbconnector/DbConnectorImp.java" />
@@ -1903,40 +1828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db2db_step/src/test/java/ch/so/agi/gretl/Db2DbStepImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding>
-            <element signature="e#484#497#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStepImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core/LoggerImpTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1970,16 +1861,62 @@
     <entry file="file://$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/DbConnectorImp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
-          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/LoggerImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="45" column="57" lean-forward="false" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
+        <state relative-caret-position="558">
+          <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db2db_step/src/test/java/ch/so/agi/gretl/Db2DbStepImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81">
+          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+          <folding>
+            <element signature="e#477#490#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/test/java/ch/so/agi/gretl/core/LoggerImpTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/ch/so/agi/gretl/core/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db2db_step/src/main/java/ch/so/agi/gretl/db2dbstep/Db2DbStepImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
