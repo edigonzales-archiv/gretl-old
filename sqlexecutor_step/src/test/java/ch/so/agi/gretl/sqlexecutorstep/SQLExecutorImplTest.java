@@ -1,10 +1,10 @@
 package ch.so.agi.gretl.sqlexecutorstep;
 
+import ch.so.agi.gretl.core.DbConnectorImp;
 import org.junit.Test;
 
-import ch.so.agi.gretl.*;
+import ch.so.agi.gretl.core.DbConnector;
 
-import ch.so.agi.gretl.core.DbConnectorImp;
 
 import java.io.File;
 import java.sql.Connection;
@@ -22,9 +22,12 @@ public class SQLExecutorImplTest {
     @Test
     public void execute() throws Exception {
         SQLExecutorImpl x = new SQLExecutorImpl();
-        Connection con = DriverManager.getConnection("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
+        DbConnectorImp dbConn = new DbConnectorImp();
+        Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
         File file = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/dummy.txt");
-        File[] sqlListe ={file};
+        File file1 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
+        File file2 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/querasdfasdfy.sql");
+        File[] sqlListe ={file, file1, file2};
 
         x.execute(con,sqlListe);
 

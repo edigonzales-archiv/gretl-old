@@ -8,5 +8,9 @@ import java.sql.Connection;
  * Created by barpastu on 09.05.17.
  */
 public interface SQLExecutor {
-    public boolean execute(Connection Db, File[] SQLFiles);
+    public void execute(Connection Db, File[] SQLFiles);
+
+    public boolean checkFiles(File[] SQLFiles);
+
+    public boolean readableFiles(File[] SQLFiles);
 }
