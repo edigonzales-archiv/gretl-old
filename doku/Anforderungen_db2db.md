@@ -69,9 +69,11 @@ log(String Message, Integer LogLevel)
 
 Beim db2db-Step soll für jedes Transferset einen Logeintrag angelegt werden (Wie viele Zeilen wurden gelesen, wie viele wurden geschrieben, wurde die Tabelle zuvor geleert?). Im Advanced-Level wird zusätzlich auch noch die SQL-Query geloggt. 
 
+
 **Dokumentation** :
 
 Die Dokumentation des db2db-Steps soll zwei Teile enthalten: Die Anleitung für den Benutzer (Guide) sowie die Dokumentation der Entwicklung (API-Dokumentation). 
+
 
 **Abgrenzung** : 
 

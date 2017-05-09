@@ -1,6 +1,8 @@
 package ch.so.agi.gretl;
 
+import ch.so.agi.gretl.db2dbstep.Db2DbStepImpl;
 import ch.so.agi.gretl.db2dbstep.TransferSet;
+import ch.so.agi.gretl.dbconnector.DbConnectorImp;
 import org.junit.Test;
 
 import java.io.File;
@@ -19,8 +21,17 @@ public class Db2DbStepImplTest {
 
         mylist.add(new TransferSet(
                 new Boolean(true),
-                new File(..),
-                "asdfads"))
+                new File("../../../../test/testsqlfile.sql"),
+                new String("java.colors")));
+
+        DbConnectorImp x = new DbConnectorImp();
+        x.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
+
+        DbConnectorImp y = new DbConnectorImp();
+        y.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
+
+        Db2DbStepImpl db2db = new Db2DbStepImpl();
+        db2db.execute(x,y,mylist);
     }
 
 }

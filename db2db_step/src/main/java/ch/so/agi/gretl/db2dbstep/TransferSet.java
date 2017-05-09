@@ -13,7 +13,8 @@ public class TransferSet {
     private File inputSqlFile;
     private String outputQualifiedSchemaAndTableName;
 
-    public void TransferSet(Boolean truncate, File inputSqlFile, String outputQualifiedSchemaAndTableName){
+
+    public TransferSet(Boolean truncate, File inputSqlFile, String outputQualifiedSchemaAndTableName){
         this.truncate = truncate;
         this.inputSqlFile = inputSqlFile;
         this.outputQualifiedSchemaAndTableName = outputQualifiedSchemaAndTableName;
