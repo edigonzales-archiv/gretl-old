@@ -6,6 +6,7 @@ import ch.so.agi.gretl.db2dbstep.TransferSet;
 import org.junit.Test;
 
 import java.io.File;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -21,17 +22,17 @@ public class Db2DbStepImplTest {
 
         mylist.add(new TransferSet(
                 new Boolean(true),
-                new File("../../../../test/testsqlfile.sql"),
+                new File("/home/bjsvwsch/codebasis_test/sql_test.sql"),
                 new String("java.colors")));
 
         DbConnectorImp x = new DbConnectorImp();
-        x.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
+        Connection xcon = x.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
 
         DbConnectorImp y = new DbConnectorImp();
-        y.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
+        Connection ycon = y.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
 
         Db2DbStepImpl db2db = new Db2DbStepImpl();
-        db2db.execute(x,y,mylist);
+        db2db.execute(xcon,ycon,mylist);
     }
 
 }
