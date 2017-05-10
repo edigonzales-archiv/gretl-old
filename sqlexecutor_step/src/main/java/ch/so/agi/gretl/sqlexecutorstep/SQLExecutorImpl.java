@@ -7,6 +7,11 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 import ch.so.agi.gretl.core.Logger;
 import ch.so.agi.gretl.core.LoggerImp;
@@ -17,11 +22,22 @@ import ch.so.agi.gretl.core.LoggerImp;
  */
 public class SQLExecutorImpl implements SQLExecutor {
 
+    private static final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
+
+
 
     @Override
     public void execute(Connection Db, File[] SQLFiles) {
+
         Logger SQLExecuterLog = LoggerImp.getInstance();
         String CompleteQuery = "";
+
+        Calendar cal = Calendar.getInstance();
+
+        SQLExecuterLog.log(1,"Start SQLExecutor: " + dateFormat.format(cal.getTime()));
+
+
 
         //Check Files for correct file extension
         SQLExecutorImpl sqlExecutorInst = new SQLExecutorImpl();
@@ -30,10 +46,10 @@ public class SQLExecutorImpl implements SQLExecutor {
         //Check if all Files are readable
         if (correctFileExtension==true){
             Boolean FilesReadable=sqlExecutorInst.readableFiles(SQLFiles);
-            SQLExecuterLog.log(1, "All files do have the correct extension");
+            SQLExecuterLog.log(2, "All files do have the correct extension");
 
             if (FilesReadable==true){
-                SQLExecuterLog.log(1,"All files are readable.");
+                SQLExecuterLog.log(2,"All files are readable.");
 
                 for (int i=0; i<SQLFiles.length; i++) {
                     Path FilePath = Paths.get(SQLFiles[i].getAbsolutePath());
@@ -42,7 +58,7 @@ public class SQLExecutorImpl implements SQLExecutor {
                         //Read SQL-File
                         byte[] encodedFile = Files.readAllBytes(FilePath);
                         String Query =new String(encodedFile, "UTF-8").trim();
-                        SQLExecuterLog.log(2,Query);
+                        SQLExecuterLog.log(2,"Query number " + (i+1) + " : " + Query);
 
                         //Test query and put all queries together to one query
                         Db.setAutoCommit(false);
@@ -50,44 +66,63 @@ public class SQLExecutorImpl implements SQLExecutor {
 
                         try {
                             SQLStatement.execute(  Query );
+                            Db.rollback();
+
                             String lastChar = Query.substring(Query.length()-1);
 
                             if (lastChar.equals(";")) {
                                 CompleteQuery = CompleteQuery + Query;
                             } else {
-                                CompleteQuery = CompleteQuery + " ; " + Query;
+                                if (CompleteQuery.equals("")){
+                                    CompleteQuery=Query;
+                                } else {
+                                    CompleteQuery = CompleteQuery + " ; " + Query;
+                                }
                             }
 
                         } catch (SQLException e) {
                             Db.rollback();
+                            Db.close();
+
                             SQLExecuterLog.log(1,e.toString());
+                            SQLExecuterLog.log(1, "DB-Connection closed");
+                            SQLExecuterLog.log(2, "SQLExecutor canceled!");
                         }
 
                         SQLExecuterLog.log(2,"Complete query: " +CompleteQuery);
 
-                        //Test complete query
-                        try {
-                            SQLStatement.execute(CompleteQuery);
-                            Db.commit();
-
-                        } catch (SQLException e){
-                            SQLExecuterLog.log(1,"Faulty complete query: "+e.toString());
-                        }
 
                     } catch (Exception e){
                         SQLExecuterLog.log(1, "Could not read file: " +e.toString());
 
-                    } finally {
-                        if (Db != null) {
-                            try {
-                                Db.close();
-                                Db = null;
-                                SQLExecuterLog.log(1, "DB-Connection closed.");
-                            } catch (SQLException e){
-                                SQLExecuterLog.log(1, "DB-Connection not closed: " + e.toString());
-                            }
+                        try {
+                            Db.close();
+                            SQLExecuterLog.log(2, "DB-Connection closed.");
+                        } catch (SQLException sqlE){
+                            SQLExecuterLog.log (2, "Could not close DB-Connection: " + sqlE.toString());
+                        } finally {
+                            SQLExecuterLog.log(2, "SQLExecutor canceled!");
                         }
+
                     }
+                }
+                //Test complete query
+                try{
+                    Statement SQLStatement = Db.createStatement();
+                    Db.setAutoCommit(false);
+
+                    try {
+                        SQLStatement.execute(CompleteQuery);
+                        Db.commit();
+
+                    } catch (SQLException e) {
+                        SQLExecuterLog.log(1, "Faulty complete query: " + e.toString());
+                        SQLExecuterLog.log(2, "SQLExecutor canceled!");
+                    }
+
+                } catch (SQLException e){
+                    SQLExecuterLog.log(1, "Could not create Statement");
+                    SQLExecuterLog.log(2, "SQLExecutor canceled!");
                 }
             }
         }
@@ -98,8 +133,10 @@ public class SQLExecutorImpl implements SQLExecutor {
                 SQLExecuterLog.log(1, "DB-Connection closed.");
             } catch (SQLException e) {
                 SQLExecuterLog.log(1, "DB-Connection not closed: " + e.toString());
+                SQLExecuterLog.log(2, "SQLExecutor canceled!");
             }
         }
+        SQLExecuterLog.log(1,"End SQLExecutor: " + dateFormat.format(cal.getTime()));
     }
 
     @Override
@@ -123,6 +160,7 @@ public class SQLExecutorImpl implements SQLExecutor {
             } else {
                 FileState = false;
                 SQLExecuterLog.log(1, "Incorrect SQL-File: " + filePath);
+                SQLExecuterLog.log(2, "SQLExecutor canceled!");
                 System.exit(1);
             }
         }
@@ -143,6 +181,7 @@ public class SQLExecutorImpl implements SQLExecutor {
                 SQLExecuterLog.log(2,"File readable: " + filePath);
             } else {
                 SQLExecuterLog.log(1, "File can not be read: " + filePath);
+                SQLExecuterLog.log(2, "SQLExecutor canceled!");
                 FileState = false;
                 System.exit(1);
             }
