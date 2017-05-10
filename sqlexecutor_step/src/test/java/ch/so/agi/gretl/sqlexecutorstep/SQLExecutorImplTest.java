@@ -2,25 +2,17 @@ package ch.so.agi.gretl.sqlexecutorstep;
 
 import ch.so.agi.gretl.core.DbConnectorImp;
 import org.junit.Test;
-
-import ch.so.agi.gretl.core.DbConnector;
-
-
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.Assert.*;
 
 /**
  * Created by barpastu on 09.05.17.
  */
 public class SQLExecutorImplTest {
+
     @Test
-    public void executeIncorrectFiles() throws Exception {
+    public void executeIncorrectFileExtension() throws Exception {
         SQLExecutorImpl x = new SQLExecutorImpl();
         DbConnectorImp dbConn = new DbConnectorImp();
         Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
@@ -30,8 +22,6 @@ public class SQLExecutorImplTest {
         File[] sqlListe ={file, file1, file2};
 
         x.execute(con,sqlListe);
-
-
     }
 
     @Test
@@ -46,6 +36,33 @@ public class SQLExecutorImplTest {
         x.execute(con,sqlListe);
 
 
+    }
+
+    @Test
+    public void executeIncorrectQuery() throws Exception {
+        SQLExecutorImpl x = new SQLExecutorImpl();
+        DbConnectorImp dbConn = new DbConnectorImp();
+        Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
+        File file1 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
+        File file2 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/wrong_query.sql");
+        File file3 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query_farben.sql");
+        File[] sqlListe ={ file1, file2,file3};
+
+        x.execute(con,sqlListe);
+
+    }
+
+
+    @Test
+    public void executeNoFiles() throws Exception {
+        SQLExecutorImpl x = new SQLExecutorImpl();
+        DbConnectorImp dbConn = new DbConnectorImp();
+        Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
+        File file1 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
+        File file2 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query_farben.sql");
+        File[] sqlListe = {};
+
+        x.execute(con, sqlListe);
     }
 
 }

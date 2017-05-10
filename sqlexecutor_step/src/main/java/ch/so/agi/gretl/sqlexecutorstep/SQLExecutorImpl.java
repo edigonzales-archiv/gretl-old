@@ -36,6 +36,24 @@ public class SQLExecutorImpl implements SQLExecutor {
 
         SQLExecuterLog.log(1,"Start SQLExecutor: " + dateFormat.format(cal.getTime()));
 
+        //Check for files in list
+        if (SQLFiles.length<1){
+            SQLExecuterLog.log(1, "There are no files given as argument.");
+            if (Db != null) {
+                try {
+                    Db.close();
+                    Db = null;
+                    SQLExecuterLog.log(1, "DB-Connection closed.");
+                } catch (SQLException e) {
+                    SQLExecuterLog.log(1, "DB-Connection not closed: " + e.toString());
+                }
+            }
+            SQLExecuterLog.log(2, "SQLExecutor canceled!");
+
+            System.exit(1);
+        }
+
+
 
         //Check Files for correct file extension
         SQLExecutorImpl sqlExecutorInst = new SQLExecutorImpl();
@@ -66,6 +84,8 @@ public class SQLExecutorImpl implements SQLExecutor {
                             SQLStatement.execute(  Query );
                             Db.rollback();
 
+                            SQLExecuterLog.log(2,"Query works.");
+
                             String lastChar = Query.substring(Query.length()-1);
 
                             if (lastChar.equals(";")) {
@@ -85,6 +105,8 @@ public class SQLExecutorImpl implements SQLExecutor {
                             SQLExecuterLog.log(1,e.toString());
                             SQLExecuterLog.log(1, "DB-Connection closed");
                             SQLExecuterLog.log(2, "SQLExecutor canceled!");
+
+                            System.exit(1);
                         }
 
                         SQLExecuterLog.log(2,"Complete query: " +CompleteQuery);
