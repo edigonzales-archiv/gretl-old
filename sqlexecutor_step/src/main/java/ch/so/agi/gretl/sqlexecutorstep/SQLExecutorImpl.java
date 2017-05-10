@@ -9,9 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Date;
 
 import ch.so.agi.gretl.core.Logger;
 import ch.so.agi.gretl.core.LoggerImp;
@@ -35,8 +33,8 @@ public class SQLExecutorImpl implements SQLExecutor {
 
         Calendar cal = Calendar.getInstance();
 
-        SQLExecuterLog.log(1,"Start SQLExecutor: " + dateFormat.format(cal.getTime()));
 
+        SQLExecuterLog.log(1,"Start SQLExecutor: " + dateFormat.format(cal.getTime()));
 
 
         //Check Files for correct file extension
@@ -124,7 +122,11 @@ public class SQLExecutorImpl implements SQLExecutor {
                     SQLExecuterLog.log(1, "Could not create Statement");
                     SQLExecuterLog.log(2, "SQLExecutor canceled!");
                 }
+            } else {
+                SQLExecuterLog.log(2, "Something went wrong.");
             }
+        } else {
+            SQLExecuterLog.log(2, "Something went wrong.");
         }
         if (Db != null) {
             try {
@@ -138,6 +140,9 @@ public class SQLExecutorImpl implements SQLExecutor {
         }
         SQLExecuterLog.log(1,"End SQLExecutor: " + dateFormat.format(cal.getTime()));
     }
+
+
+
 
     @Override
     public boolean checkFiles(File[] SQLFiles){
@@ -165,8 +170,10 @@ public class SQLExecutorImpl implements SQLExecutor {
             }
         }
         return FileState;
-
     }
+
+
+
 
     @Override
     public boolean readableFiles(File[] SQLFiles) {
