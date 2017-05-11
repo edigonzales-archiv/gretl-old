@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile files('./lib/ojdbc7.jar', './lib/postgresql-42.0.0.jar', './lib/sqljdbc42.jar', './lib/sqlite-jdbc-3.16.1.jar')
+    compile files('./lib/ojdbc7.jar', './lib/postgresql-42.0.0.jar', './lib/sqljdbc42.jar', './lib/sqlite-jdbc-3.16.1.jar', './lib/derby.jar')
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-alpha2'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.8.0-alpha2'
 }

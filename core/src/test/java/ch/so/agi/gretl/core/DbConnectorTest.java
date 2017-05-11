@@ -29,4 +29,10 @@ public class DbConnectorTest {
         DbConnector x = new DbConnector();
         x.Con("jdbc:sqlite:./test/gemeindegrenzen.sqlite", null, null);
     }
+
+    @Test
+    public void con_derby() throws Exception {
+        DbConnector x = new DbConnector();
+        x.Con("jdbc:derby:memory:myInMemDB;create=true", null, null);
+    }
 }
