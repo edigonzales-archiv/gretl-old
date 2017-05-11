@@ -1,14 +1,16 @@
 package ch.so.agi.gretl.sqlexecutorstep;
 
-import java.io.File;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLRecoverableException;
 import java.sql.Statement;
 
-import ch.so.agi.gretl.core.Logger;
+import ch.so.agi.gretl.core.SqlReader;
+import ch.so.agi.gretl.logging.Logger;
 
 
 /**
@@ -17,10 +19,13 @@ import ch.so.agi.gretl.core.Logger;
 public class SQLExecutor {
 
 
-
-
-
-
+    /**
+     * Executes the queries within the .sql-files in the specified database. But does not commit SQL-Statements
+     *
+     * @param db            Database connection
+     * @param sqlfiles      Files with .sql-extension which contain queries
+     * @throws Exception
+     */
     public void execute(Connection db, File[] sqlfiles) throws Exception {
 
         String CompleteQuery = "";
@@ -43,144 +48,107 @@ public class SQLExecutor {
         }
 
 
-
         //Check Files for correct file extension
-        SQLExecutor sqlExecutorInst = new SQLExecutor();
-        Boolean correctFileExtension = sqlExecutorInst.checkFiles(sqlfiles);
-
-        if (!correctFileExtension){
-            throw new Exception("incorrect file extension");
-        }
-
-        //Check if all Files are readable
-        if (correctFileExtension==true){
-            Boolean FilesReadable=sqlExecutorInst.readableFiles(sqlfiles);
-            Logger.log(2, "All files do have the correct extension");
-
-            if (FilesReadable==true){
-                Logger.log(2,"All files are readable.");
-
-                for (int i=0; i<sqlfiles.length; i++) {
-                    Path FilePath = Paths.get(sqlfiles[i].getAbsolutePath());
-
-                    try {
-                        //Read SQL-File
-                        byte[] encodedFile = Files.readAllBytes(FilePath);
-                        String Query =new String(encodedFile, "UTF-8").trim();
-                        Logger.log(2,"Query number " + (i+1) + " : " + Query);
-
-                        //Test query and put all queries together to one query
-                        Statement SQLStatement = db.createStatement();
-
-                        try {
-                            SQLStatement.execute(  Query );
-                            db.rollback();
-
-                            Logger.log(2,"Query works.");
-
-                            String lastChar = Query.substring(Query.length()-1);
-
-                            if (lastChar.equals(";")) {
-                                CompleteQuery = CompleteQuery + Query;
-                            } else {
-                                if (CompleteQuery.equals("")){
-                                    CompleteQuery=Query;
-                                } else {
-                                    CompleteQuery = CompleteQuery + " ; " + Query;
-                                }
-                            }
-
-                        } catch (SQLException e) {
-
-
-                            Logger.log(1,e.toString());
-                            Logger.log(1, "DB-Connection closed");
-                            Logger.log(2, "SQLExecutor canceled!");
-                        }
-
-                        Logger.log(2,"Complete query: " +CompleteQuery);
-
-
-                    } catch (Exception e){
-                        Logger.log(1, "Could not read file: " +e.toString());
-
-                        try {
-                            db.close();
-                            Logger.log(2, "DB-Connection closed.");
-                        } catch (SQLException sqlE){
-                            Logger.log (2, "Could not close DB-Connection: " + sqlE.toString());
-                        } finally {
-                            Logger.log(2, "SQLExecutor canceled!");
-                        }
-
-                    }
-                }
-                //Test complete query
-                try{
-                    Statement SQLStatement = db.createStatement();
-
-                    try {
-                        SQLStatement.execute(CompleteQuery);
-
-                    } catch (SQLException e) {
-                        Logger.log(1, "Faulty complete query: " + e.toString());
-                        Logger.log(2, "SQLExecutor canceled!");
-                    }
-
-                } catch (SQLException e){
-                    Logger.log(1, "Could not create Statement");
-                    Logger.log(2, "SQLExecutor canceled!");
-                }
-            } else {
-                Logger.log(2, "Something went wrong.");
+        for (File file: sqlfiles) {
+            String fileExtension = getFileExtension(file);
+            if (!fileExtension.equals(".sql")){
+                throw new Exception("incorrect file extension");
             }
-        } else {
-            Logger.log(2, "Something went wrong.");
         }
-        if (db != null) {
+
+        // Read Files
+        for (File sqlfile: sqlfiles){
+
             try {
-                db.close();
-                db = null;
-                Logger.log(1, "DB-Connection closed.");
-            } catch (SQLException e) {
-                Logger.log(1, "DB-Connection not closed: " + e.toString());
-                Logger.log(2, "SQLExecutor canceled!");
+                FileInputStream sqlFileInputStream = new FileInputStream(sqlfile);
+                InputStreamReader sqlFileReader = null;
+
+                try {
+                    sqlFileReader = new InputStreamReader(sqlFileInputStream);
+
+                    try {
+                        executeSqlScript(db, sqlFileReader);
+                    } catch (Exception f) {
+                        throw new Exception("Could not read file: " + sqlfile.getAbsolutePath() + " " + f.toString());
+                    }
+
+                } catch (Exception e) {
+
+                    throw new Exception("Error while reading file:" + sqlfile.getAbsolutePath() + " " + e.toString());
+                } finally {
+
+                    try {
+                        sqlFileReader.close();
+
+                    } catch (Exception g) {
+                        throw new Exception("Could not close Reader");
+
+                    }
+                }
+            } catch (Exception h){
+                throw new Exception("Could not create FileInputStream for file: " + sqlfile.getAbsolutePath() + " " + h.toString());
             }
         }
-        Logger.log(1,"End SQLExecutor");
+    }
+
+    /**
+     * Gets the extension of the given file.
+     *
+     * @param inputFile File, which should be checked for the extension
+     * @return          file extension (e.g. ".sql")
+     */
+    private String getFileExtension(File inputFile){
+        String filePath =inputFile.getAbsolutePath();
+        String filename = filePath.substring(filePath.lastIndexOf("/"));
+        String FileExtension = filename.substring(filename.indexOf("."));
+
+        return FileExtension;
     }
 
 
 
+    /**
+     * Gets the sqlquery out of the given file and executes the statement on the given database
+     * @param conn              Database connection
+     * @param inputStreamReader inputStream of a specific file
+     */
+    public static void executeSqlScript(Connection conn, java.io.InputStreamReader inputStreamReader) {
+        java.io.PushbackReader reader = null;
+        reader = new java.io.PushbackReader(inputStreamReader);
+        try {
+            String line = SqlReader.readSqlStmt(reader);
+            Logger.log(Logger.INFO_LEVEL,line);
+            while (line != null) {
+                // exec sql
+                line = line.trim();
+                if (line.length() > 0) {
+                    Statement dbstmt = null;
+                    try {
+                        try {
+                            dbstmt = conn.createStatement();
+                            Logger.log(Logger.DEBUG_LEVEL, line);
+                            dbstmt.execute(line);
+                        } finally {
+                            dbstmt.close();
+                        }
+                    } catch (SQLException ex) {
+                        throw new IllegalStateException(ex);
+                    }
 
-    public boolean checkFiles(File[] SQLFiles){
-        Boolean FileState = true;
-
-        //Check if Files are .sql-Files
-        for (int i=0; i<SQLFiles.length; i++) {
-            //Getting Filextension (e.g. ".sql")
-            String filePath = SQLFiles[i].getAbsolutePath();
-            String filename = filePath.substring(filePath.lastIndexOf("/"));
-            String FileExtension = filename.substring(filename.indexOf("."));
-
-            Logger.log(2, "Filepath: " + filePath);
-
-            //Check for wrong Fileextensions (everything else than .sql)
-            if (FileExtension.equals(".sql")) {
-                Logger.log(2, "Correct SQL-File: " + filePath);
-
-            } else {
-                FileState = false;
-                Logger.log(1, "Incorrect SQL-File: " + filePath);
-                Logger.log(2, "SQLExecutor canceled!");
-                System.exit(1);
+                }
+                // read next line
+                line = SqlReader.readSqlStmt(reader);
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                throw new IllegalStateException(e);
             }
         }
-        return FileState;
     }
-
-
-    private String getFileExtension(File)
 
 
 
