@@ -84,11 +84,13 @@ public class SqlReader {
                 }
                 break;
             }else if(c=='\n'){
+                stmt.append(" ");
                 c=reader.read();
                 if(c!=-1 && c!='\r'){
                     reader.unread(c);
                 }
             }else if(c=='\r'){
+                stmt.append(" ");
                 c=reader.read();
                 if(c!=-1 && c!='\n'){
                     reader.unread(c);
