@@ -52,7 +52,7 @@ public class SQLExecutor {
         for (File file: sqlfiles) {
             String fileExtension = getFileExtension(file);
             if (!fileExtension.equals(".sql")){
-                throw new Exception("incorrect file extension");
+                throw new Exception("incorrect file extension at file: " + file.getAbsolutePath());
             }
         }
 
@@ -108,7 +108,7 @@ public class SQLExecutor {
 
 
     /**
-     * Gets the sqlquery out of the given file and executes the statement on the given database
+     * Gets the sqlqueries out of the given file and executes the statements on the given database
      * @param conn              Database connection
      * @param inputStreamReader inputStream of a specific file
      */
@@ -117,7 +117,6 @@ public class SQLExecutor {
         reader = new java.io.PushbackReader(inputStreamReader);
         try {
             String line = SqlReader.readSqlStmt(reader);
-            Logger.log(Logger.INFO_LEVEL,line);
             while (line != null) {
                 // exec sql
                 line = line.trim();
