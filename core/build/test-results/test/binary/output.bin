@@ -1,6 +1,0 @@
-INFO: , Super Log
-DEBUG: , Super Log2
-ijava.sql.SQLException: No suitable driver found for jdbc:sqlserver://srsofaioi18943.verw.rootso.org:1433
-_java.sql.SQLException: No suitable driver found for jdbc:postgresql://10.36.54.200:54321/sogis
-sjava.sql.SQLException: No suitable driver found for jdbc:oracle:thin:@//srsofaioi18632.verw.rootso.org:1521/capi_p
-^java.sql.SQLException: No suitable driver found for jdbc:sqlite:./test/gemeindegrenzen.sqlite
