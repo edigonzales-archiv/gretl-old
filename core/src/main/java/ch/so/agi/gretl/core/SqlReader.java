@@ -1,52 +1,11 @@
 package ch.so.agi.gretl.core;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Created by bjsvwsch on 10.05.17.
  */
 public class SqlReader {
-
-    public static void executeSqlScript(Connection conn, java.io.InputStreamReader script)
-    {
-        java.io.PushbackReader reader=null;
-        reader = new java.io.PushbackReader(script);
-        try{
-            String line = readSqlStmt(reader);
-            while(line!=null){
-                // exec sql
-                line=line.trim();
-                if(line.length()>0){
-                    Statement dbstmt = null;
-                    try{
-                        try{
-                            dbstmt = conn.createStatement();
-                            Logger.log(Logger.DEBUG_LEVEL, line);
-                            dbstmt.execute(line);
-                        }finally{
-                            dbstmt.close();
-                        }
-                    }catch(SQLException ex){
-                        throw new IllegalStateException(ex);
-                    }
-
-                }
-                // read next line
-                line=readSqlStmt(reader);
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }finally{
-            try {
-                reader.close();
-            } catch (IOException e) {
-                throw new IllegalStateException(e);
-            }
-        }
-    }
 
     public static String readSqlStmt(java.io.PushbackReader reader)
             throws IOException {
