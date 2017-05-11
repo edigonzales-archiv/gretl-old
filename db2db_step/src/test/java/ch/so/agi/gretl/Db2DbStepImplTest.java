@@ -1,6 +1,6 @@
 package ch.so.agi.gretl;
 
-import ch.so.agi.gretl.core.DbConnectorImp;
+import ch.so.agi.gretl.core.DbConnector;
 import ch.so.agi.gretl.db2dbstep.Db2DbStep;
 import ch.so.agi.gretl.db2dbstep.TransferSet;
 import org.junit.Test;
@@ -25,10 +25,10 @@ public class Db2DbStepImplTest {
                 new File("/home/bjsvwsch/codebasis_test/sql_test.sql"),
                 new String("public.geo_gemeinden")));
 
-        DbConnectorImp x = new DbConnectorImp();
+        DbConnector x = new DbConnector();
         Connection xcon = x.Con("jdbc:postgresql://geodb-t.verw.rootso.org/sogis", "bjsvwsch", null);
 
-        DbConnectorImp y = new DbConnectorImp();
+        DbConnector y = new DbConnector();
         Connection ycon = y.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
 
         Db2DbStep db2db = new Db2DbStep();
