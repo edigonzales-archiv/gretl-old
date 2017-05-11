@@ -16,7 +16,7 @@ public class Logger  {
 
 
     static public void log(int LogLevel, String message) {
-        org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.core.Logger.class);
+        org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.logging.Logger.class);
         if (LogLevel== INFO_LEVEL) {
             /** INFO **/
             /**Write to a file**/
@@ -40,7 +40,7 @@ public class Logger  {
     }
 
     static public void log(int LogLevel, Exception e) {
-        org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.core.Logger.class);
+        org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.logging.Logger.class);
         logger.debug("", e);
     }
 }
