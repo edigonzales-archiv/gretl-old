@@ -33,7 +33,7 @@ public class Logger  {
         else {
             /**UNEXPECTED LOGLEVEL**/
             /**Throws Exception**/
-            throw new RuntimeException("Logging-Fehler");
+            throw new RuntimeException("Failure with logging");
         }
 
 
@@ -41,6 +41,14 @@ public class Logger  {
 
     static public void log(int LogLevel, Exception e) {
         org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.logging.Logger.class);
-        logger.debug("", e);
+        if (LogLevel==INFO_LEVEL) {
+            logger.info("", e);
+
+        } else if (LogLevel==DEBUG_LEVEL) {
+            logger.debug("", e);
+
+        } else {
+            throw new RuntimeException("Failure with logging");
+        }
     }
 }
