@@ -9,18 +9,18 @@ import java.lang.reflect.Array;
 public class TransferSet {
 
 
-    private Boolean truncate;
+    private boolean truncate;
     private File inputSqlFile;
     private String outputQualifiedSchemaAndTableName;
 
 
-    public TransferSet(Boolean truncate, File inputSqlFile, String outputQualifiedSchemaAndTableName){
+    public TransferSet(boolean truncate, File inputSqlFile, String outputQualifiedSchemaAndTableName){
         this.truncate = truncate;
         this.inputSqlFile = inputSqlFile;
         this.outputQualifiedSchemaAndTableName = outputQualifiedSchemaAndTableName;
     }
 
-    public Boolean getTruncate() {
+    public boolean getTruncate() {
         return truncate;
     }
 
