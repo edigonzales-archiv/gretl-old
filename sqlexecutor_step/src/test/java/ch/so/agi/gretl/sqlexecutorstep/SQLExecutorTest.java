@@ -131,7 +131,7 @@ public class SQLExecutorTest {
                 "  colors.rot,\n" +
                 "  gruen,\n" +
                 "  colors.blau,\n" +
-                "  farbname\n" +
+                "  colors.farbname\n" +
                 "FROM colors\n" +
                 "WHERE farbname = 'rot'");
         writer.close();
@@ -144,5 +144,90 @@ public class SQLExecutorTest {
 
         x.execute(con,sqlListe);
     }
+
+
+    @Test
+    public void executeWrongQuery() throws Exception {
+        SQLExecutor x = new SQLExecutor();
+        DbConnector dbConn = new DbConnector();
+        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+        con.setAutoCommit(true);
+        Statement stmt = con.createStatement();
+        stmt.execute("CREATE TABLE colors ( " +
+                "  rot integer, " +
+                "  gruen integer, " +
+                "  blau integer, " +
+                "  farbname VARCHAR(200))");
+        stmt.execute("INSERT INTO colors  VALUES (255,0,0,'rot')");
+
+
+        File sqlFile =  folder.newFile("query.sql");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFile));
+        writer.write(" SELECT \n" +
+                "  colors.rot,\n" +
+                "  gruen,\n" +
+                "  colors.blau,\n" +
+                "  colors.farbname\n" +
+                "FROM color\n" +
+                "WHERE farbname = 'rot'");
+        writer.close();
+
+        File[] sqlListe ={sqlFile};
+
+        try {
+            x.execute(con, sqlListe);
+            Assert.fail();
+        } catch (Exception e) {
+
+        }
+
+    }
+
+
+    @Test
+    public void execute() throws Exception {
+        SQLExecutor x = new SQLExecutor();
+        DbConnector dbConn = new DbConnector();
+        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+        con.setAutoCommit(true);
+        Statement stmt = con.createStatement();
+        stmt.execute("CREATE TABLE colors ( " +
+                "  rot integer, " +
+                "  gruen integer, " +
+                "  blau integer, " +
+                "  farbname VARCHAR(200))");
+        stmt.execute("INSERT INTO colors  VALUES (255,0,0,'rot')");
+        stmt.execute("INSERT INTO colors  VALUES (251,0,0,'rot')");
+        stmt.execute("INSERT INTO colors  VALUES (0,0,255,'blau')");
+
+
+        File sqlFile =  folder.newFile("query.sql");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFile));
+        writer.write(" SELECT \n" +
+                "  colors.rot,\n" +
+                "  gruen,\n" +
+                "  colors.blau,\n" +
+                "  colors.farbname\n" +
+                "FROM colors\n" +
+                "WHERE farbname = 'rot'");
+        writer.close();
+
+        File sqlFile1 =  folder.newFile("query1.sql");
+        BufferedWriter writer1 = new BufferedWriter(new FileWriter(sqlFile1));
+        writer1.write("SELECT farbname\n" +
+                        "FROM colors\n" +
+                        "WHERE gruen=0\n" +
+                        "GROUP BY farbname");
+        writer1.close();
+
+        File[] sqlListe ={sqlFile, sqlFile1};
+
+        x.execute(con,sqlListe);
+    }
+
+
+
+
+
 
 }
