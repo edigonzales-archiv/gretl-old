@@ -1,8 +1,9 @@
-package ch.so.agi.gretl.core;
+package ch.so.agi.gretl.logging;
 
 import org.slf4j.LoggerFactory;
+
 /**
- * Created by bjsvwsch on 09.05.17.
+ * Created by barpastu on 11.05.17.
  */
 public class Logger  {
 
@@ -15,7 +16,7 @@ public class Logger  {
 
 
     static public void log(int LogLevel, String message) {
-        org.slf4j.Logger logger = LoggerFactory.getLogger(Logger.class);
+        org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.core.Logger.class);
         if (LogLevel== INFO_LEVEL) {
             /** INFO **/
             /**Write to a file**/
@@ -39,7 +40,7 @@ public class Logger  {
     }
 
     static public void log(int LogLevel, Exception e) {
-        org.slf4j.Logger logger = LoggerFactory.getLogger(Logger.class);
+        org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.core.Logger.class);
         logger.debug("", e);
     }
 }
