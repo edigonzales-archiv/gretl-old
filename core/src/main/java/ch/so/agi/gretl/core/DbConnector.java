@@ -12,6 +12,15 @@ import java.sql.SQLException;
 public class DbConnector {
     private static Connection con=null;
 
+    /**
+     * Returns the connection to a specific database. The database is specified by the arguments ConnectionUrl,
+     * UserName and Password.
+     *
+     * @param ConnectionUrl database specific JDBC-Connection-URL
+     * @param UserName      database user
+     * @param Password      password of given database user
+     * @return              the connection to the specific database
+     */
 
     public static Connection Con(String ConnectionUrl, String UserName, String Password) {
         try {

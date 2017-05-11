@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created by barpastu on 11.05.17.
+ *
  */
 public class Logger  {
 
@@ -14,6 +15,13 @@ public class Logger  {
 
     private Logger() {}
 
+    /**
+     * Logs the given message string.
+     *
+     *
+     * @param LogLevel  Loglevel used for logging (INFO_LEVEL / DEBUG_LEVEL)
+     * @param message   message which will be logged
+     */
 
     static public void log(int LogLevel, String message) {
         org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.logging.Logger.class);
@@ -39,6 +47,14 @@ public class Logger  {
 
     }
 
+
+    /**
+     *
+     * Logs the given exception
+     *
+     * @param LogLevel  Loglevel used for logging (INFO_LEVEL / DEBUG_LEVEL)
+     * @param e         exception which will be logged
+     */
     static public void log(int LogLevel, Exception e) {
         org.slf4j.Logger logger = LoggerFactory.getLogger(ch.so.agi.gretl.logging.Logger.class);
         if (LogLevel==INFO_LEVEL) {
