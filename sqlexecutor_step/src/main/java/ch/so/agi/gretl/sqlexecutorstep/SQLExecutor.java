@@ -112,7 +112,7 @@ public class SQLExecutor {
      * @param conn              Database connection
      * @param inputStreamReader inputStream of a specific file
      */
-    public static void executeSqlScript(Connection conn, java.io.InputStreamReader inputStreamReader) {
+    private static void executeSqlScript(Connection conn, java.io.InputStreamReader inputStreamReader) {
         java.io.PushbackReader reader = null;
         reader = new java.io.PushbackReader(inputStreamReader);
         try {
