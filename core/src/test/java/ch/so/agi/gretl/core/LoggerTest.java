@@ -1,6 +1,8 @@
 package ch.so.agi.gretl.core;
 
+import ch.so.agi.gretl.logging.Logger;
 import org.junit.Test;
+
 
 /**
  * Created by bjsvwsch on 09.05.17.
