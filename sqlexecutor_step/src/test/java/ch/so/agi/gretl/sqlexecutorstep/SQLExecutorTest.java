@@ -9,11 +9,11 @@ import java.sql.Connection;
 /**
  * Created by barpastu on 09.05.17.
  */
-public class SQLExecutorImplTest {
+public class SQLExecutorTest {
 
     @Test
     public void executeIncorrectFileExtension() throws Exception {
-        SQLExecutorImpl x = new SQLExecutorImpl();
+        SQLExecutor x = new SQLExecutor();
         DbConnectorImp dbConn = new DbConnectorImp();
         Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
         File file = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/dummy.txt");
@@ -26,7 +26,7 @@ public class SQLExecutorImplTest {
 
     @Test
     public void execute() throws Exception {
-        SQLExecutorImpl x = new SQLExecutorImpl();
+        SQLExecutor x = new SQLExecutor();
         DbConnectorImp dbConn = new DbConnectorImp();
         Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
         File file1 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
@@ -40,7 +40,7 @@ public class SQLExecutorImplTest {
 
     @Test
     public void executeIncorrectQuery() throws Exception {
-        SQLExecutorImpl x = new SQLExecutorImpl();
+        SQLExecutor x = new SQLExecutor();
         DbConnectorImp dbConn = new DbConnectorImp();
         Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
         File file1 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
@@ -55,7 +55,7 @@ public class SQLExecutorImplTest {
 
     @Test
     public void executeNoFiles() throws Exception {
-        SQLExecutorImpl x = new SQLExecutorImpl();
+        SQLExecutor x = new SQLExecutor();
         DbConnectorImp dbConn = new DbConnectorImp();
         Connection con = dbConn.Con("jdbc:postgresql://10.36.54.198:54321/sogis", "barpastu", null);
         File file1 = new File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
