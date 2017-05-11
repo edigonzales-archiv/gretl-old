@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu May 11 14:17:04 CEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-015b-f770-ea06-00000cd82520 
+on database directory memory:/home/barpastu/codebasis/trunk/core/myInMemDB with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Loaded from file:/home/barpastu/codebasis/trunk/core/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_121-b13
+user.dir=/home/barpastu/codebasis/trunk/core
+os.name=Linux
+os.arch=amd64
+os.version=4.4.0-75-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
