@@ -31,8 +31,8 @@ public class Db2DbStepImplTest {
         DbConnector y = new DbConnector();
         Connection ycon = y.Con("jdbc:postgresql://10.36.54.200:54321/sogis", "bjsvwsch", null);
 
-        Db2DbStep db2db = new Db2DbStep();
-        db2db.execute(xcon,ycon,mylist);
+        Db2DbStep db2db = new Db2DbStep(xcon, ycon);
+        db2db.execute(mylist);
         xcon.close();
         ycon.close();
     }

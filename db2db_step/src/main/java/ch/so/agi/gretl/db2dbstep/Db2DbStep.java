@@ -1,6 +1,6 @@
 package ch.so.agi.gretl.db2dbstep;
 
-import ch.so.agi.gretl.core.Logger;
+import ch.so.agi.gretl.logging.Logger;
 import ch.so.agi.gretl.core.SqlReader;
 
 import java.io.*;
@@ -14,11 +14,17 @@ import java.util.List;
  */
 public class Db2DbStep {
 
+    private Connection sourceDb;
+    private Connection targetDb;
     /** KONSTRUKTOR **/
+    public Db2DbStep(Connection sourceDb, Connection targetDb) {
+        this.sourceDb = sourceDb;
+        this.targetDb = targetDb;
+    }
 
     /** HAUPTFUNKTION **/
 
-    public void execute(Connection sourceDb, Connection targetDb, List<TransferSet> transferSets) throws SQLException {
+    public void execute( List<TransferSet> transferSets) throws SQLException {
 
         /** LIST of forbidden words **/
         List<String> keywords = new ArrayList<>();
@@ -39,11 +45,11 @@ public class Db2DbStep {
             File InputFile = transferSet.getInputSqlFile();
 
             if (transferSet.getTruncate()==true) {
-                truncateTargetTable(targetDb, transferSet);
+                truncateTargetTable(transferSet);
             }
 
             try {
-                readInputFile(sourceDb, targetDb, keywords, e, transferSet, InputFile);
+                readInputFile(keywords, e, transferSet, InputFile);
             } catch (IOException e4) {
                 Logger.log(Logger.INFO_LEVEL, "Could not read sql file!");
                 throw new RuntimeException(e4);
@@ -63,7 +69,7 @@ public class Db2DbStep {
 
     }
 
-    private void readInputFile(Connection sourceDb, Connection targetDb, List<String> keywords, String e, TransferSet transferSet, File inputFile) throws FileNotFoundException {
+    private void readInputFile(List<String> keywords, String e, TransferSet transferSet, File inputFile) throws FileNotFoundException {
         FileReader read = new FileReader(inputFile);
         PushbackReader reader = null;
         reader = new PushbackReader(read);
@@ -80,7 +86,7 @@ public class Db2DbStep {
                     }
                     try {
                         //HIER WIRD RICHTIG AUSGEFÜHRT!!!
-                        executeSql(sourceDb, targetDb, line, transferSet);
+                        executeSql(line, transferSet);
                     } catch (Exception e1) {
                       Logger.log(Logger.DEBUG_LEVEL, e1);
                       throw new IOException(e1);
@@ -106,7 +112,7 @@ public class Db2DbStep {
         }
     }
 
-    private void truncateTargetTable(Connection targetDb, TransferSet transferSet) throws SQLException {
+    private void truncateTargetTable(TransferSet transferSet) throws SQLException {
         String sqltruncate = "DELETE FROM "+transferSet.getOutputQualifiedSchemaAndTableName();
         Logger.log(Logger.INFO_LEVEL,"Try to delete all rows in Table "+transferSet.getOutputQualifiedSchemaAndTableName());
         try {
@@ -121,7 +127,7 @@ public class Db2DbStep {
         }
     }
 
-    private void executeSql(Connection sourceDb, Connection targetDb, String line, TransferSet set) throws Exception {
+    private void executeSql(String line, TransferSet set) throws Exception {
         Statement dbstmt = null;
         StringBuilder columnNames = null;
         StringBuilder bindVariables = null;
