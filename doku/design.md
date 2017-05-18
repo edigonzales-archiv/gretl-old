@@ -1,0 +1,4 @@
+# Design
+
+Das Design sieht vor, dass ein build-Tool (in unserem Fall gradle), der Überbau des ganzen Projekts darstellt. Von diesem Überbau aus werden die Steps einzeln angesprochen und es werden ihnen die benötigten Parameter übergeben.
+In diesem build-Tool werden die Datenbank-Verbindungen definiert, welche im Anschluss in DBConnections umgewandelt werden und für die Steps als Parameter verwendet werden. Das build-Tool führt nach dem Abschluss des Db2Db-Steps oder des SQLExecutor-Steps ein commit durch, welches die in den Steps erstellten Queries ausführt. Sobald die Queries ausgeführt wurden, wird die DBConnection durch das Build-Tool wieder geschlossen.
