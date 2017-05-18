@@ -9,19 +9,19 @@ import java.lang.reflect.Array;
 public class TransferSet {
 
 
-    private boolean truncate;
+    private boolean deleteAllRows;
     private File inputSqlFile;
     private String outputQualifiedSchemaAndTableName;
 
 
-    public TransferSet(boolean truncate, File inputSqlFile, String outputQualifiedSchemaAndTableName){
-        this.truncate = truncate;
+    public TransferSet(boolean deleteAllRows, File inputSqlFile, String outputQualifiedSchemaAndTableName){
+        this.deleteAllRows = deleteAllRows;
         this.inputSqlFile = inputSqlFile;
         this.outputQualifiedSchemaAndTableName = outputQualifiedSchemaAndTableName;
     }
 
-    public boolean getTruncate() {
-        return truncate;
+    public boolean getDeleteAllRows() {
+        return deleteAllRows;
     }
 
     public File getInputSqlFile() {

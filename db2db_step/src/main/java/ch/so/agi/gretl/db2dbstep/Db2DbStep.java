@@ -12,6 +12,8 @@ import java.util.List;
 /**
  * Created by bjsvwsch on 03.05.17.
  */
+
+
 public class Db2DbStep {
 
     private Connection sourceDb;
@@ -22,9 +24,147 @@ public class Db2DbStep {
         this.targetDb = targetDb;
     }
 
-    /** HAUPTFUNKTION **/
 
-    public void execute( List<TransferSet> transferSets) throws SQLException {
+    /**
+     * Führt für alle Transfersets die Transfers von der Quell- in die Zieldatenbank
+     * durch und schliesst die Transaktion ab.
+     */
+    public void processAllTransferSets(List<TransferSet> transferSets) throws SQLException, FileNotFoundException {
+        Logger.log(Logger.INFO_LEVEL, "Found "+transferSets.size()+" transferSets");
+        for(TransferSet transferSet : transferSets){
+            processTransferSet(sourceDb, targetDb, transferSet);
+        }
+    }
+
+    /**
+     * Führt für das Transferset den Transfer vom Quell-Resultset in die entsprechende Tabelle
+     * der Zieldatenbank durch.
+     * @param srcCon
+     * @param targetCon
+     * @param transferSet
+     */
+    private void processTransferSet(Connection srcCon, Connection targetCon, TransferSet transferSet) throws SQLException, FileNotFoundException {
+        if (transferSet.getDeleteAllRows() == true) {
+            deleteDestTableContents(targetCon, transferSet.getOutputQualifiedSchemaAndTableName());
+        }
+        String selectStatement = extractSingleStatement(transferSet.getInputSqlFile());
+
+        PreparedStatement insertRowStatement = createInsertRowStatement(
+                   srcCon,
+                   selectStatement,
+                   transferSet.getOutputQualifiedSchemaAndTableName());
+
+        ResultSet rs = createResultSet(srcCon, selectStatement);
+
+        while (rs.next()) {
+            int size = 0;
+            transferRow(rs, insertRowStatement, size);
+        }
+    }
+
+    /**
+     * Kopiert eine Zeile des Quell-ResultSet in die Zieltabelle
+     * @param rs
+     * @param insertRowStatement
+     * @param size
+     */
+    private void transferRow(ResultSet rs, PreparedStatement insertRowStatement, int size) throws SQLException {
+        size++;
+        // insert
+        // assign column wise values
+        int columncount = rs.getMetaData().getColumnCount();
+        for (int j = 1; j < columncount; j++) {
+            insertRowStatement.setObject(j,rs.getObject(j));
+        }
+        insertRowStatement.execute();
+    }
+
+    private void deleteDestTableContents(Connection targetCon, String destTableName) throws SQLException {
+        String sqltruncate = "DELETE FROM "+destTableName;
+        Logger.log(Logger.INFO_LEVEL,"Try to delete all rows in Table "+destTableName);
+        try {
+            PreparedStatement truncatestmt = targetDb.prepareStatement(sqltruncate);
+            truncatestmt.execute();
+            Logger.log(Logger.INFO_LEVEL, "DELETE succesfull!");
+        } catch (SQLException e1) {
+            Logger.log(Logger.INFO_LEVEL, "DELETE FROM TABLE "+destTableName+" failed!");
+            Logger.log(Logger.DEBUG_LEVEL, e1);
+            throw e1;
+        }
+    }
+
+
+
+    /**
+     * Erstellt mittels Quell-SelectStatement auf die Quelldatenbank das ResultSet.
+     */
+    private ResultSet createResultSet(Connection srcCon, String sqlSelectStatement) throws SQLException {
+        Statement SQLStatement = sourceDb.createStatement();
+        ResultSet rs = SQLStatement.executeQuery(sqlSelectStatement);
+
+        return rs;
+    }
+
+    /**
+     * Erstellt aufgrund der Metadaten des Quell-SelectStatements das Statement für den Insert einer
+     * Zeile in die Zieltabelle
+     * @param srcCon
+     * @param srcQuery
+     * @param destTableName
+     * * @return
+     */
+
+    private PreparedStatement createInsertRowStatement(Connection srcCon, String srcQuery, String destTableName) throws SQLException {
+        ResultSetMetaData meta = null;
+        Statement dbstmt = null;
+        StringBuilder columnNames = null;
+        StringBuilder bindVariables = null;
+        ResultSet rs = null;
+        try {
+            Statement SQLStatement = sourceDb.createStatement();
+            rs = SQLStatement.executeQuery(srcQuery);
+        } catch (SQLException f) {
+            Logger.log(Logger.INFO_LEVEL, String.valueOf(f));
+            throw new SQLException(f);
+        }
+        try {
+            meta = rs.getMetaData();
+        } catch (SQLException g) {
+            Logger.log(Logger.INFO_LEVEL, String.valueOf(g));
+            throw new SQLException(g);
+        }
+        columnNames = new StringBuilder();
+        bindVariables = new StringBuilder();
+
+        int j;
+        for (j = 1; j < meta.getColumnCount(); j++)
+        {
+            if (j > 1) {
+                columnNames.append(", ");
+                bindVariables.append(", ");
+            }
+            columnNames.append(meta.getColumnName(j));
+            bindVariables.append("?");
+        }
+        Logger.log(Logger.INFO_LEVEL, "I got "+j+" columns");
+        // prepare destination sql
+        String sql = "INSERT INTO " + destTableName + " ("
+                + columnNames
+                + ") VALUES ("
+                + bindVariables
+                + ")";
+        Logger.log(Logger.DEBUG_LEVEL,"INSERT STATEMENT RAW = "+sql);
+
+        PreparedStatement insertRowStatement = targetDb.prepareStatement(sql);
+
+        return insertRowStatement;
+    }
+
+    private String extractSingleStatement(File targetFile) throws FileNotFoundException {
+        FileReader read = new FileReader(targetFile);
+        PushbackReader reader = null;
+        reader = new PushbackReader(read);
+        String line = null;
 
         /** LIST of forbidden words **/
         List<String> keywords = new ArrayList<>();
@@ -34,47 +174,8 @@ public class Db2DbStep {
         keywords.add("DROP");
         keywords.add("CREATE");
 
-        String e = null;
-        Logger.log(Logger.INFO_LEVEL, "Found "+transferSets.size()+" transferSets");
-        for (TransferSet transferSet: transferSets) {
-
-            Logger.log(Logger.DEBUG_LEVEL, Boolean.toString(transferSet.getTruncate()));
-            Logger.log(Logger.DEBUG_LEVEL, transferSet.getInputSqlFile().toString());
-            Logger.log(Logger.DEBUG_LEVEL, transferSet.getOutputQualifiedSchemaAndTableName());
-
-            File InputFile = transferSet.getInputSqlFile();
-
-            if (transferSet.getTruncate()==true) {
-                truncateTargetTable(transferSet);
-            }
-
-            try {
-                readInputFile(keywords, e, transferSet, InputFile);
-            } catch (IOException e4) {
-                Logger.log(Logger.INFO_LEVEL, "Could not read sql file!");
-                throw new RuntimeException(e4);
-            }
-        } //End of For-loop
         try {
-            sourceDb.commit();
-            targetDb.commit();
-            Logger.log(Logger.INFO_LEVEL, "Transaction successful!");
-        } catch (SQLException e42) {
-            Logger.log(Logger.INFO_LEVEL, "Transaction failed!");
-            Logger.log(Logger.DEBUG_LEVEL, e42);
-            sourceDb.rollback();
-            targetDb.rollback();
-        }
-
-
-    }
-
-    private void readInputFile(List<String> keywords, String e, TransferSet transferSet, File inputFile) throws FileNotFoundException {
-        FileReader read = new FileReader(inputFile);
-        PushbackReader reader = null;
-        reader = new PushbackReader(read);
-        try {
-            String line = SqlReader.readSqlStmt(reader);
+            line = SqlReader.readSqlStmt(reader);
             while (line != null) {
                 line = line.trim();
                 if (line.length() > 0) {
@@ -82,21 +183,16 @@ public class Db2DbStep {
                     //Check if there are no bad words in the Statement
                     if (containsAKeyword(line, keywords) == true) {
                         Logger.log(Logger.INFO_LEVEL, "FOUND NOT ALLOWED WORDS IN SQL STATEMENT!");
-                        throw new IOException(e);
+                        throw new RuntimeException();
                     }
-                    try {
-                        //HIER WIRD RICHTIG AUSGEFÜHRT!!!
-                        executeSql(line, transferSet);
-                    } catch (Exception e1) {
-                      Logger.log(Logger.DEBUG_LEVEL, e1);
-                      throw new IOException(e1);
-                    }
-
+                } else {
+                    Logger.log(Logger.INFO_LEVEL, "NO STATEMENT IN FILE!");
+                    throw new FileNotFoundException();
                 }
                 // read next line
                 line = SqlReader.readSqlStmt(reader);
                 if (line != null) {
-                    Logger.log(Logger.INFO_LEVEL,"There are more then 1 SQL-Statement in the file "+ inputFile.getName()+" but only the first Statement will be executed!");
+                    Logger.log(Logger.INFO_LEVEL,"There are more then 1 SQL-Statement in the file "+targetFile.getName()+" but only the first Statement will be executed!");
                     throw new RuntimeException();
                 }
 
@@ -110,98 +206,10 @@ public class Db2DbStep {
                 throw new IllegalStateException(e3);
             }
         }
+        return line;
     }
 
-    private void truncateTargetTable(TransferSet transferSet) throws SQLException {
-        String sqltruncate = "DELETE FROM "+transferSet.getOutputQualifiedSchemaAndTableName();
-        Logger.log(Logger.INFO_LEVEL,"Try to delete all rows in Table "+transferSet.getOutputQualifiedSchemaAndTableName());
-        try {
-            //targetDb.setAutoCommit(true);
-            PreparedStatement truncatestmt = targetDb.prepareStatement(sqltruncate);
-            truncatestmt.execute();
-            Logger.log(Logger.INFO_LEVEL, "DELETE succesfull!");
-        } catch (SQLException e1) {
-            Logger.log(Logger.INFO_LEVEL, "DELETE FROM TABLE "+transferSet.getOutputQualifiedSchemaAndTableName()+" failed!");
-            Logger.log(Logger.DEBUG_LEVEL, e1);
-            throw e1;
-        }
-    }
-
-    private void executeSql(String line, TransferSet set) throws Exception {
-        Statement dbstmt = null;
-        StringBuilder columnNames = null;
-        StringBuilder bindVariables = null;
-
-        try{
-            try{
-                dbstmt = sourceDb.createStatement();
-                Logger.log(Logger.DEBUG_LEVEL, line);
-                ResultSet rs = null;
-                Statement SQLStatement = sourceDb.createStatement();
-
-                try {
-                    rs = SQLStatement.executeQuery(line);
-                } catch (SQLException f) {
-                    Logger.log(Logger.INFO_LEVEL, String.valueOf(f));
-                    throw new SQLException(f);
-                }
-
-                //Metadaten werden präpariert (column names)
-                ResultSetMetaData meta = null;
-                try {
-                    meta = rs.getMetaData();
-                } catch (SQLException g) {
-                    Logger.log(Logger.INFO_LEVEL, String.valueOf(g));
-                    throw new SQLException(g);
-                }
-                columnNames = new StringBuilder();
-                bindVariables = new StringBuilder();
-
-
-                int j;
-                for (j = 1; j < meta.getColumnCount(); j++)
-                {
-                    if (j > 1) {
-                        columnNames.append(", ");
-                        bindVariables.append(", ");
-                    }
-                    columnNames.append(meta.getColumnName(j));
-                    bindVariables.append("?");
-                }
-                Logger.log(Logger.INFO_LEVEL, "I got "+j+" columns");
-                // prepare destination sql
-                String sql = "INSERT INTO " + set.getOutputQualifiedSchemaAndTableName() + " ("
-                        + columnNames
-                        + ") VALUES ("
-                        + bindVariables
-                        + ")";
-                Logger.log(Logger.DEBUG_LEVEL,"INSERT STATEMENT RAW = "+sql);
-
-
-                //Write it to the Output-Table
-                // for all records in source recordset
-                int size = 0;
-                while(rs.next()){
-                    size++;
-                    // insert
-                    // assign column wise values
-                    PreparedStatement deststmt = targetDb.prepareStatement(sql);
-                    for (j = 1; j < meta.getColumnCount(); j++) {
-                        deststmt.setObject(j,rs.getObject(j));
-                    }
-                    deststmt.execute();
-                }
-                Logger.log(Logger.INFO_LEVEL, "I got "+size+" rows");
-            } catch (SQLException e1) {
-                Logger.log(Logger.DEBUG_LEVEL,e1);
-                throw e1;
-            }
-        } catch (RuntimeException e33) {
-            Logger.log(Logger.DEBUG_LEVEL, "Function executeSql failed");
-        }
-    }
-
-    public boolean containsAKeyword(String myString, List<String> keywords){
+    private boolean containsAKeyword(String myString, List<String> keywords){
         for(String keyword : keywords){
             if(myString.contains(keyword)){
                 return true;
@@ -209,4 +217,7 @@ public class Db2DbStep {
         }
         return false; // Never found match.
     }
+
+
+
 }
