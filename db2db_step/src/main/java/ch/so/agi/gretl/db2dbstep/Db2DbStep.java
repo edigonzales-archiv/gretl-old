@@ -1,11 +1,14 @@
 package ch.so.agi.gretl.db2dbstep;
 
+import ch.so.agi.gretl.core.EmptyFileException;
+import ch.so.agi.gretl.core.NotAllowedExpressionException;
 import ch.so.agi.gretl.logging.Logger;
 import ch.so.agi.gretl.core.SqlReader;
 
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 
 
@@ -34,6 +37,18 @@ public class Db2DbStep {
         for(TransferSet transferSet : transferSets){
             processTransferSet(sourceDb, targetDb, transferSet);
         }
+
+        try {
+            sourceDb.commit();
+            targetDb.commit();
+            Logger.log(Logger.INFO_LEVEL, "Transaction successful!");
+        } catch (SQLException e42) {
+            Logger.log(Logger.INFO_LEVEL, "Transaction failed!");
+            Logger.log(Logger.DEBUG_LEVEL, e42);
+            sourceDb.rollback();
+            targetDb.rollback();
+        }
+
     }
 
     /**
@@ -161,6 +176,7 @@ public class Db2DbStep {
     }
 
     private String extractSingleStatement(File targetFile) throws FileNotFoundException {
+        if(!targetFile.canRead()) {throw new FileNotFoundException();}
         FileReader read = new FileReader(targetFile);
         PushbackReader reader = null;
         reader = new PushbackReader(read);
@@ -174,16 +190,21 @@ public class Db2DbStep {
         keywords.add("DROP");
         keywords.add("CREATE");
 
+        String firstline = null;
         try {
             line = SqlReader.readSqlStmt(reader);
+            if(line == null) {
+                Logger.log(Logger.INFO_LEVEL,"Empty File. No Statement to execute!");
+                throw new EmptyFileException();
+            }
             while (line != null) {
-                line = line.trim();
-                if (line.length() > 0) {
-                    Logger.log(Logger.INFO_LEVEL,"Statements: "+line.length());
+                firstline = line.trim();
+                if (firstline.length() > 0) {
+                    Logger.log(Logger.INFO_LEVEL, "Statement found. Length: " + firstline.length()+" caracters");
                     //Check if there are no bad words in the Statement
-                    if (containsAKeyword(line, keywords) == true) {
+                    if (containsAKeyword(firstline, keywords) == true) {
                         Logger.log(Logger.INFO_LEVEL, "FOUND NOT ALLOWED WORDS IN SQL STATEMENT!");
-                        throw new RuntimeException();
+                        throw new NotAllowedExpressionException();
                     }
                 } else {
                     Logger.log(Logger.INFO_LEVEL, "NO STATEMENT IN FILE!");
@@ -192,7 +213,7 @@ public class Db2DbStep {
                 // read next line
                 line = SqlReader.readSqlStmt(reader);
                 if (line != null) {
-                    Logger.log(Logger.INFO_LEVEL,"There are more then 1 SQL-Statement in the file "+targetFile.getName()+" but only the first Statement will be executed!");
+                    Logger.log(Logger.INFO_LEVEL, "There are more then 1 SQL-Statement in the file " + targetFile.getName() + " but only the first Statement will be executed!");
                     throw new RuntimeException();
                 }
 
@@ -206,7 +227,7 @@ public class Db2DbStep {
                 throw new IllegalStateException(e3);
             }
         }
-        return line;
+        return firstline;
     }
 
     private boolean containsAKeyword(String myString, List<String> keywords){
