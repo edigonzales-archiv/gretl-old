@@ -33,6 +33,8 @@ public class SQLExecutorTest {
             Assert.fail();
         } catch (Exception e) {
 
+        } finally {
+            con.close();
         }
     }
 
@@ -106,6 +108,8 @@ public class SQLExecutorTest {
             Assert.fail();
         } catch (Exception e) {
 
+        } finally {
+            con.close();
         }
     }
 
@@ -143,6 +147,7 @@ public class SQLExecutorTest {
         File[] sqlListe ={sqlFile, sqlFile1};
 
         x.execute(con,sqlListe);
+        con.close();
     }
 
 
@@ -179,6 +184,8 @@ public class SQLExecutorTest {
             Assert.fail();
         } catch (Exception e) {
 
+        } finally {
+            con.close();
         }
 
     }
@@ -223,6 +230,7 @@ public class SQLExecutorTest {
         File[] sqlListe ={sqlFile, sqlFile1};
 
         x.execute(con,sqlListe);
+        con.close();
     }
 
 
