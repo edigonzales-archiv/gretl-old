@@ -5,6 +5,7 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
+
 repositories {
     mavenCentral()
 }
@@ -12,4 +13,21 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile project(':core')
+    compile gradleApi()
+}
+
+
+task TestTask(type: Db2DbStepTask) {
+    sourceUri = "jdbc:derby:memory:myInMemDB;create=true,bjsvwsch,";
+    targetUri = "jdbc:derby:memory:myInMemDB;create=true,bjsvwsch,";
+
+    task TransferSet (type: TransferSetBuildTask) {
+        //Macht eine leere Liste
+        task AddSetToList (type: TransferSetAddTask) {
+            delete = true
+            file = "/path/to/file.sql"
+            tableName = "colors"
+            myList = myList
+        }
+    }
 }

@@ -24,9 +24,7 @@ public class TransferSet {
         return deleteAllRows;
     }
 
-    public File getInputSqlFile() {
-        return inputSqlFile;
-    }
+    public File getInputSqlFile() { return inputSqlFile; }
 
     public String getOutputQualifiedSchemaAndTableName() {
         return outputQualifiedSchemaAndTableName;

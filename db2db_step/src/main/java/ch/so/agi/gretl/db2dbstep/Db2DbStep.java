@@ -8,8 +8,8 @@ import ch.so.agi.gretl.core.SqlReader;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.EmptyStackException;
 import java.util.List;
+
 
 
 /**
@@ -26,7 +26,6 @@ public class Db2DbStep {
         this.sourceDb = sourceDb;
         this.targetDb = targetDb;
     }
-
 
     /**
      * Führt für alle Transfersets die Transfers von der Quell- in die Zieldatenbank
