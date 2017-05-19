@@ -1,12 +1,8 @@
 package ch.so.agi.gretl.sqlexecutorstep;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.SQLRecoverableException;
 import java.sql.Statement;
 
 import ch.so.agi.gretl.core.SqlReader;
