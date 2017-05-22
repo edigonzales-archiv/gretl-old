@@ -2,4 +2,5 @@ rootProject.name = 'gretl'
 include 'db2db_step'
 include 'sqlexecutor_step'
 include 'core'
+include 'buildSrc'
 

@@ -12,20 +12,16 @@ import java.util.Set;
 /**
  * Created by bjsvwsch on 19.05.17.
  */
-public class TransferSetAddTask extends DefaultTask {
-    @Input
+public class TransferSetAddTask {
+
     private boolean delete;
 
-    @Input
     private File file;
 
-    @Input
     private String tableName;
 
-    @Input
     private List<TransferSet> myList;
 
-    @TaskAction
     public List<TransferSet> add(){
         myList.add(new TransferSet(
                 delete,

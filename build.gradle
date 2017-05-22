@@ -2,13 +2,24 @@ group 'gretl'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
+/**
+rootProject.dependencies {
+    runtime project(':core')
+    runtime project(':db2db_step')
+    runtime project(':sqlexecutor_step')
+}
+ **/
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project(':core')
+    compile project(':db2db_step')
+    compile project(':sqlexecutor_step')
 }
