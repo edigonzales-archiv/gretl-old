@@ -1,6 +1,5 @@
 package ch.so.agi.gretl.db2dbstep;
 
-import ch.so.agi.gretl.core.DbConnector;
 import ch.so.agi.gretl.core.TransactionContext;
 import ch.so.agi.gretl.logging.Logger;
 import org.gradle.api.DefaultTask;
@@ -8,7 +7,6 @@ import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
 
 import java.io.FileNotFoundException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 

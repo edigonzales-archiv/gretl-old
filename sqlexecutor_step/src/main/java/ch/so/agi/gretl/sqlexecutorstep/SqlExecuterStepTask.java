@@ -7,10 +7,6 @@ import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by bjsvwsch on 19.05.17.
