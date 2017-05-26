@@ -65,8 +65,8 @@ public class SQLExecutor {
 
                     try {
                         executeSqlScript(db, sqlFileReader);
-                    } catch (Exception f) {
-                        throw new Exception("Could not read file: " + sqlfile.getAbsolutePath() + " " + f.toString());
+                    } finally {
+
                     }
 
                 } catch (Exception e) {
