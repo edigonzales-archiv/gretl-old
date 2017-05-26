@@ -22,4 +22,5 @@ dependencies {
     compile project(':core')
     compile project(':db2db_step')
     compile project(':sqlexecutor_step')
+    compile gradleApi()
 }
