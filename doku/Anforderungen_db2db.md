@@ -2,13 +2,6 @@ Anforderungen Steps
 =================== 
 
 ----------
-**Kontext**
-----------
-
-Verschiedene Datenherren und Datenproduzenten stellen ihre Daten auf unterschiedlichen Plattformen (Oracle, Postgres, SQLite etc.) zur Verfügung. Da diese teilweise periodisch in unsere Postgresql-DB abgelegt werden müssen und für verschiedene Anwendungen benötigt und/oder umgebaut werden müssen, soll es Steps geben, welches einen vordefinierten Import der Daten in unsere DB ermöglicht. 
-Eingebettet wird der Step in Gradle, einem Build-Tool, welches die Zusammensetzung mehrerer Steps ermöglicht. 
-
-----------
 **db2db-Step**
 ---------- 
 
