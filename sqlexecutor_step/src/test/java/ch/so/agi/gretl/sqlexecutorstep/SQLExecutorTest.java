@@ -25,7 +25,7 @@ public class SQLExecutorTest {
     public void executeWithoutFiles() throws Exception {
         SQLExecutor x = new SQLExecutor();
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
         File[] sqlListe ={};
 
         try {
@@ -72,7 +72,7 @@ public class SQLExecutorTest {
         SQLExecutor x = new SQLExecutor();
 
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
 
         File sqlFile =  folder.newFile("query.sql");
         BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFile));
@@ -118,7 +118,7 @@ public class SQLExecutorTest {
     public void executeEmptyFile() throws Exception {
         SQLExecutor x = new SQLExecutor();
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
         stmt.execute("CREATE TABLE colors ( " +
@@ -155,7 +155,7 @@ public class SQLExecutorTest {
     public void executeWrongQuery() throws Exception {
         SQLExecutor x = new SQLExecutor();
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
         stmt.execute("CREATE TABLE colors ( " +
@@ -195,7 +195,7 @@ public class SQLExecutorTest {
     public void execute() throws Exception {
         SQLExecutor x = new SQLExecutor();
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
         stmt.execute("CREATE TABLE colors ( " +
