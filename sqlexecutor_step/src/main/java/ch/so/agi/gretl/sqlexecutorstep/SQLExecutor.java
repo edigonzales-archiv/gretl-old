@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import ch.so.agi.gretl.core.SqlReader;
 import ch.so.agi.gretl.logging.Logger;
+import ch.so.agi.gretl.core.FileExtension;
 
 
 /**
@@ -46,8 +47,8 @@ public class SQLExecutor {
 
         //Check Files for correct file extension
         for (File file: sqlfiles) {
-            String fileExtension = getFileExtension(file);
-            if (!fileExtension.equals(".sql")){
+            String fileExtension = FileExtension.getFileExtension(file);
+            if (!fileExtension.equals("sql")){
                 throw new Exception("incorrect file extension at file: " + file.getAbsolutePath());
             }
         }
@@ -75,11 +76,13 @@ public class SQLExecutor {
 
                     try {
                         sqlFileReader.close();
+                        sqlFileInputStream.close();
 
                     } catch (Exception g) {
                         throw new Exception("Could not close Reader");
 
                     }
+
                 }
             } catch (Exception h){
                 throw new Exception("Could not create FileInputStream for file: " + sqlfile.getAbsolutePath() + " " + h.toString());
@@ -87,19 +90,7 @@ public class SQLExecutor {
         }
     }
 
-    /**
-     * Gets the extension of the given file.
-     *
-     * @param inputFile File, which should be checked for the extension
-     * @return          file extension (e.g. ".sql")
-     */
-    private String getFileExtension(File inputFile){
-        String filePath =inputFile.getAbsolutePath();
-        String filename = filePath.substring(filePath.lastIndexOf("/"));
-        String FileExtension = filename.substring(filename.indexOf("."));
 
-        return FileExtension;
-    }
 
 
 
