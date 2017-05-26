@@ -22,7 +22,7 @@ public class DbConnector {
      * @return              the connection to the specific database
      */
 
-    public static Connection Con(String ConnectionUrl, String UserName, String Password) {
+    public static Connection connect(String ConnectionUrl, String UserName, String Password) {
         try {
             con = DriverManager.getConnection(
                     ConnectionUrl,UserName,Password);
