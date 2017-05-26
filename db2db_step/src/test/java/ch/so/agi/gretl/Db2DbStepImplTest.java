@@ -5,7 +5,6 @@ import ch.so.agi.gretl.core.EmptyFileException;
 import ch.so.agi.gretl.core.NotAllowedExpressionException;
 import ch.so.agi.gretl.db2dbstep.Db2DbStep;
 import ch.so.agi.gretl.db2dbstep.TransferSet;
-import ch.so.agi.gretl.logging.Logger;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,8 +17,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by bjsvwsch on 03.05.17.
@@ -35,7 +32,7 @@ public class Db2DbStepImplTest {
     public void Db2DbPositiveTest() throws Exception {
         //unittest
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
         stmt.execute("CREATE TABLE colors ( " +
@@ -63,10 +60,10 @@ public class Db2DbStepImplTest {
 
 
         DbConnector x = new DbConnector();
-        Connection xcon = x.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection xcon = x.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
 
         DbConnector y = new DbConnector();
-        Connection ycon = y.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection ycon = y.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
 
         Db2DbStep db2db = new Db2DbStep(xcon, ycon);
         db2db.processAllTransferSets(mylist);
@@ -87,7 +84,7 @@ public class Db2DbStepImplTest {
     public void Db2DbNotAllowedTest() throws Exception {
         //unittest
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
         stmt.execute("CREATE TABLE colors ( " +
@@ -114,10 +111,10 @@ public class Db2DbStepImplTest {
 
 
         DbConnector x = new DbConnector();
-        Connection xcon = x.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection xcon = x.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
 
         DbConnector y = new DbConnector();
-        Connection ycon = y.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection ycon = y.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
 
         Db2DbStep db2db = new Db2DbStep(xcon, ycon);
 
@@ -139,7 +136,7 @@ public class Db2DbStepImplTest {
     public void Db2DbEmptyFileTest() throws Exception {
         //unittest
         DbConnector dbConn = new DbConnector();
-        Connection con = dbConn.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
         stmt.execute("CREATE TABLE colors ( " +
@@ -162,10 +159,10 @@ public class Db2DbStepImplTest {
 
 
         DbConnector x = new DbConnector();
-        Connection xcon = x.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection xcon = x.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
 
         DbConnector y = new DbConnector();
-        Connection ycon = y.Con("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
+        Connection ycon = y.connect("jdbc:derby:memory:myInMemDB;create=true", "bjsvwsch", null);
 
         Db2DbStep db2db = new Db2DbStep(xcon, ycon);
 
