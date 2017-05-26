@@ -21,7 +21,7 @@ public class TransactionContext { //implements org.gradle.api.ProjectEvaluationL
 
     public Connection getDbConnection() {
         if (dbConnection == null) {
-            dbConnection = DbConnector.Con(dbUri, dbUser, dbPassword);
+            dbConnection = DbConnector.connect(dbUri, dbUser, dbPassword);
         }
         return dbConnection;
     }
