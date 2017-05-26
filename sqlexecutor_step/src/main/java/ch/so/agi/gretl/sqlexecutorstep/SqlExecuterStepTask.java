@@ -16,15 +16,13 @@ import java.util.List;
  * Created by bjsvwsch on 19.05.17.
  */
 public class SqlExecuterStepTask extends DefaultTask {
-    public TransactionContext sourceDb;
-    public File[] sqlFiles; //org.gradle.api.file.FileCollection
 
     @Input
-    TransactionContext getSourceDb() {return sourceDb;}
+    public TransactionContext  sourceDb;
 
 
     @Input
-    File[] getSqlFiles() {return sqlFiles;}
+    public File[]  sqlFiles;
 
 
     @TaskAction
