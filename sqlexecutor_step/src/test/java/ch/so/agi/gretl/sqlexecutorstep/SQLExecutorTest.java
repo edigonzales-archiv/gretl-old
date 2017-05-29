@@ -126,22 +126,22 @@ public class SQLExecutorTest {
         Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
-        stmt.execute("CREATE TABLE colors ( " +
+        stmt.execute("CREATE TABLE colors2 ( " +
                 "  rot integer, " +
                 "  gruen integer, " +
                 "  blau integer, " +
                 "  farbname VARCHAR(200))");
-        stmt.execute("INSERT INTO colors  VALUES (255,0,0,'rot')");
+        stmt.execute("INSERT INTO colors2  VALUES (255,0,0,'rot')");
 
 
         File sqlFile =  folder.newFile("query.sql");
         BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFile));
         writer.write(" SELECT \n" +
-                "  colors.rot,\n" +
+                "  colors2.rot,\n" +
                 "  gruen,\n" +
-                "  colors.blau,\n" +
-                "  colors.farbname\n" +
-                "FROM colors\n" +
+                "  colors2.blau,\n" +
+                "  colors2.farbname\n" +
+                "FROM colors2\n" +
                 "WHERE farbname = 'rot'");
         writer.close();
 
@@ -165,22 +165,22 @@ public class SQLExecutorTest {
         Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
         con.setAutoCommit(true);
         Statement stmt = con.createStatement();
-        stmt.execute("CREATE TABLE colors ( " +
+        stmt.execute("CREATE TABLE colors1 ( " +
                 "  rot integer, " +
                 "  gruen integer, " +
                 "  blau integer, " +
                 "  farbname VARCHAR(200))");
-        stmt.execute("INSERT INTO colors  VALUES (255,0,0,'rot')");
+        stmt.execute("INSERT INTO colors1  VALUES (255,0,0,'rot')");
 
 
         File sqlFile =  folder.newFile("query.sql");
         BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFile));
         writer.write(" SELECT \n" +
-                "  colors.rot,\n" +
+                "  colors1.rot,\n" +
                 "  gruen,\n" +
-                "  colors.blau,\n" +
-                "  colors.farbname\n" +
-                "FROM color\n" +
+                "  colors1.blau,\n" +
+                "  colors1.farbname\n" +
+                "FROM color1\n" +
                 "WHERE farbname = 'rot'");
         writer.close();
         List<File> sqlListe = new ArrayList<File>();
