@@ -21,16 +21,7 @@ public class Db2DbStepTask extends DefaultTask {
     public TransactionContext targetDb;
     @Input
     public List<TransferSet> transferSet;
-/**
-    @Input
-    TransactionContext getSourceDb() {return sourceDb;}
 
-    @Input
-    TransactionContext getTargetDb() {return targetDb;}
-
-    @Input
-    List<TransferSet> getTransferSet() {return transferSet;}
-**/
     @TaskAction
     public void db2DbStepTask() {
 

@@ -1,23 +1,29 @@
 package ch.so.agi.gretl.core;
 
+import org.gradle.api.Project;
+import org.gradle.api.ProjectEvaluationListener;
+import org.gradle.api.ProjectState;
+import org.gradle.api.invocation.Gradle;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
  * Created by bjsvwsch on 19.05.17.
  */
-public class TransactionContext { //implements org.gradle.api.ProjectEvaluationListener
+public class TransactionContext implements org.gradle.api.ProjectEvaluationListener { //implements org.gradle.api.ProjectEvaluationListener
 
     private String dbUri;
     private String dbUser;
     private String dbPassword;
-
+    //KONSTRUKTOR
     public TransactionContext(String dbUri, String dbUser, String dbPassword) {
         this.dbUri = dbUri;
         this.dbUser = dbUser;
         this.dbPassword = dbPassword;
         //Gradle.addProjectEvaluationListener(this);
     }
+    //KONSTRUKTOR ENDE
 
     public Connection getDbConnection() {
         if (dbConnection == null) {
@@ -40,10 +46,6 @@ public class TransactionContext { //implements org.gradle.api.ProjectEvaluationL
         }
     }
 
-    //afterEvaluate() {
-    //    dbCommit();
-    //  }
-
     public void dbCommit() {
         try {
             if (dbConnection != null) {
@@ -54,4 +56,15 @@ public class TransactionContext { //implements org.gradle.api.ProjectEvaluationL
 
         }
     }
+
+    @Override
+    public void beforeEvaluate(Project project) {
+
+    }
+
+    @Override
+    public void afterEvaluate(Project project, ProjectState projectState) {
+        dbCommit();
+    }
+
 }
