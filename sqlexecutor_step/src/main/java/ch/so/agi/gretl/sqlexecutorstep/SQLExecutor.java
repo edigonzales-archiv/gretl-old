@@ -4,6 +4,7 @@ import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import ch.so.agi.gretl.core.SqlReader;
 import ch.so.agi.gretl.logging.Logger;
@@ -23,14 +24,14 @@ public class SQLExecutor {
      * @param sqlfiles      Files with .sql-extension which contain queries
      * @throws Exception
      */
-    public void execute(Connection db, File[] sqlfiles) throws Exception {
+    public void execute(Connection db, List<File> sqlfiles) throws Exception {
 
         String CompleteQuery = "";
 
         Logger.log(Logger.INFO_LEVEL,"Start SQLExecutor");
 
         //Check for files in list
-        if (sqlfiles.length<1){
+        if (sqlfiles.size()<1){
             throw new Exception("Missing input files");
         }
 

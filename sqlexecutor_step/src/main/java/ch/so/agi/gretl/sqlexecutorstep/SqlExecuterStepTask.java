@@ -7,6 +7,8 @@ import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bjsvwsch on 19.05.17.
@@ -18,7 +20,7 @@ public class SqlExecuterStepTask extends DefaultTask {
 
 
     @Input
-    public File[]  sqlFiles;
+    public List<File> sqlFiles;
 
 
     @TaskAction

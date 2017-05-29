@@ -16,4 +16,9 @@ dependencies {
     compile gradleApi()
 }
 
+/*task test123 (type: SqlExecutorStepTask) {
+
+   sourceDb=TransactionContext.getDbConnection("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
+   sqlFiles=File("/home/barpastu/codebasis/trunk/sqlexecutor_step/src/main/java/query.sql");
+}*/
 

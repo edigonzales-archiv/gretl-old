@@ -9,6 +9,8 @@ import org.junit.rules.TemporaryFolder;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,7 +28,7 @@ public class SQLExecutorTest {
         SQLExecutor x = new SQLExecutor();
         DbConnector dbConn = new DbConnector();
         Connection con = dbConn.connect("jdbc:derby:memory:myInMemDB;create=true", "barpastu", null);
-        File[] sqlListe ={};
+        List<File> sqlListe = new ArrayList<File>();
 
         try {
             x.execute(con,sqlListe);
@@ -56,7 +58,8 @@ public class SQLExecutorTest {
                 "    ON forstreviere_forstkreis.t_id=forstreviere_forstrevier.forstkreis\n" +
                 "GROUP BY forstreviere_forstkreis.t_id");
         writer.close();
-        File[] sqlListe ={sqlFile};
+        List<File> sqlListe = new ArrayList<File>();
+        sqlListe.add(sqlFile);
 
         try {
             x.execute(con,sqlListe);
@@ -101,7 +104,9 @@ public class SQLExecutorTest {
                 "    ON forstreviere_forstkreis.t_id=forstreviere_forstrevier.forstkreis\n" +
                 "GROUP BY forstreviere_forstkreis.t_id");
         writer1.close();
-        File[] sqlListe ={sqlFile, sqlFile1};
+        List<File> sqlListe = new ArrayList<File>();
+        sqlListe.add(sqlFile);
+        sqlListe.add(sqlFile1);
 
         try {
             x.execute(con,sqlListe);
@@ -144,7 +149,9 @@ public class SQLExecutorTest {
         BufferedWriter writer1 = new BufferedWriter(new FileWriter(sqlFile1));
         writer1.write("");
         writer1.close();
-        File[] sqlListe ={sqlFile, sqlFile1};
+        List<File> sqlListe = new ArrayList<File>();
+        sqlListe.add(sqlFile);
+        sqlListe.add(sqlFile1);
 
         x.execute(con,sqlListe);
         con.close();
@@ -176,8 +183,8 @@ public class SQLExecutorTest {
                 "FROM color\n" +
                 "WHERE farbname = 'rot'");
         writer.close();
-
-        File[] sqlListe ={sqlFile};
+        List<File> sqlListe = new ArrayList<File>();
+        sqlListe.add(sqlFile);
 
         try {
             x.execute(con, sqlListe);
@@ -226,8 +233,9 @@ public class SQLExecutorTest {
                         "WHERE gruen=0\n" +
                         "GROUP BY farbname");
         writer1.close();
-
-        File[] sqlListe ={sqlFile, sqlFile1};
+        List<File> sqlListe = new ArrayList<File>();
+        sqlListe.add(sqlFile);
+        sqlListe.add(sqlFile1);
 
         x.execute(con,sqlListe);
         con.close();
