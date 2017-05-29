@@ -36,7 +36,6 @@ public class Logger  {
             /** DEBUG **/
             /**Write to another file**/
             logger.debug(message);
-
         }
         else {
             /**UNEXPECTED LOGLEVEL**/
